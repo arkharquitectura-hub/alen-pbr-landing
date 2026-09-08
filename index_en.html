@@ -625,9 +625,9 @@
                     <i class="fa-solid fa-bolt"></i> Get Full Bundle for Only $27 USD
                 </a>
                 <div class="value-trust-line">
-                    <span><i class="fa-solid fa-shield-halved"></i> 7-Day Guarantee</span>
-                    <span><i class="fa-solid fa-infinity"></i> Lifetime Access</span>
                     <span><i class="fa-solid fa-bolt"></i> Instant Download</span>
+                    <span><i class="fa-solid fa-infinity"></i> Lifetime Access</span>
+                    <span><i class="fa-solid fa-headset"></i> 1-on-1 Support</span>
                 </div>
             </div>
         </div>
@@ -838,13 +838,13 @@
                 </a>
             </div>
 
-            <!-- Guarantee -->
+            <!-- Support & Delivery Commitment -->
             <div class="guarantee-box">
                 <div class="g-title">
-                    <i class="fa-solid fa-shield-halved" style="font-size:1.3rem;"></i>
-                    100% SATISFACTION GUARANTEE — 7 DAYS RISK-FREE
+                    <i class="fa-solid fa-circle-check" style="font-size:1.3rem; color:#34d399;"></i>
+                    INSTANT DIGITAL DELIVERY &amp; DIRECT 1-ON-1 SUPPORT
                 </div>
-                <p>Try it on your actual client projects. If within the first 7 days you feel it doesn't save you hours of work or meet your expectations, we'll refund 100% of your money immediately with no questions asked.</p>
+                <p>Upon payment confirmation, you receive immediate access to direct software downloads and the full 3D asset library. You also get priority 1-on-1 support via WhatsApp to assist with setup, installation, and optimization.</p>
             </div>
 
             <!-- Trust Seals -->
@@ -861,7 +861,7 @@
         <div class="container section-title-block">
             <div class="section-tag" style="background:rgba(34,211,238,0.1);color:#22d3ee;border-color:rgba(34,211,238,0.25);">Frequently Asked Questions</div>
             <h2>Clear up all your <span class="hl-purple">Doubts</span></h2>
-            <p>Everything you need to know about the software, D5 Render assets, payment options, and our guarantee.</p>
+            <p>Everything you need to know about the software, D5 Render assets, payment options, and support.</p>
         </div>
         <div class="container faq-container">
             <!-- FAQ 1 -->
@@ -1004,12 +1004,12 @@
                 <summary>
                     <div class="faq-header-left">
                         <span class="faq-num-pill">09</span>
-                        <span class="faq-question-text">How does the 7-Day Money-Back Guarantee work?</span>
+                        <span class="faq-question-text">How do I receive file access and technical support?</span>
                     </div>
                     <span class="faq-icon-toggle"><i class="fa-solid fa-chevron-down"></i></span>
                 </summary>
                 <div class="faq-content">
-                    <p>We want you to purchase with complete confidence. You have <strong>7 full days</strong> from your purchase to test the organizer, textures, and D5 3D models in your actual production projects. If you feel it doesn't save you hours or exceed your expectations, simply send us a message and we will issue a <strong>100% full refund immediately</strong>, no questions asked.</p>
+                    <p>As this is an <strong>instant-delivery downloadable digital product</strong>, you receive your access links immediately upon payment confirmation. Additionally, you get <strong>dedicated 1-on-1 technical support via WhatsApp</strong> to assist with installation, setup, or questions in your 3D workflow.</p>
                 </div>
             </details>
         </div>
@@ -1023,12 +1023,21 @@
             </div>
             <p>The ultimate desktop tool for 3D artists and architectural visualization professionals.</p>
             <div class="footer-trust">
-                <span><i class="fa-solid fa-shield-halved"></i> 7-day guarantee</span>
-                <span><i class="fa-solid fa-infinity"></i> Lifetime license</span>
+                <span><i class="fa-solid fa-bolt"></i> Instant Delivery</span>
+                <span><i class="fa-solid fa-infinity"></i> Lifetime License</span>
                 <span><i class="fa-solid fa-lock"></i> Gumroad &bull; PayPal &bull; Mercado Pago</span>
                 <span><i class="fa-brands fa-windows"></i> Windows 10 / 11</span>
             </div>
-            <p class="footer-copy">&copy; 2026 Alen PBR Organizer &mdash; Desktop Software for Windows</p>
+            <div class="footer-legal-links">
+                <a href="terms.html">Terms &amp; Conditions</a>
+                <span>&bull;</span>
+                <a href="privacy.html">Privacy &amp; Cookies</a>
+                <span>&bull;</span>
+                <a href="guia.html">Installation Guide</a>
+                <span>&bull;</span>
+                <a href="catalogo_en.html">3D Catalog</a>
+            </div>
+            <p class="footer-copy">&copy; 2026 Alen PBR Organizer &mdash; All rights reserved &bull; Arkh Studio</p>
         </div>
     </footer>
 
@@ -1166,6 +1175,47 @@
             });
         }, { threshold: 0.12 });
         els.forEach(function(el){ observer.observe(el); });
+    })();
+    </script>
+
+    <!-- ===== COOKIE CONSENT BANNER ===== -->
+    <div id="cookieBanner" class="cookie-banner" style="display:none;">
+        <div class="cookie-banner-header">
+            <i class="fa-solid fa-cookie-bite"></i>
+            <span>Privacy &amp; Cookie Notice</span>
+        </div>
+        <p>
+            We use essential and analytics cookies to optimize your browsing experience according to our <a href="privacy.html">Privacy Policy</a>.
+        </p>
+        <div class="cookie-banner-actions">
+            <button class="btn-cookie-accept" id="btnAcceptCookies">Accept All</button>
+            <button class="btn-cookie-decline" id="btnDeclineCookies">Decline</button>
+        </div>
+    </div>
+
+    <script>
+    // Cookie Consent Logic
+    (function(){
+        const banner = document.getElementById('cookieBanner');
+        const btnAccept = document.getElementById('btnAcceptCookies');
+        const btnDecline = document.getElementById('btnDeclineCookies');
+        if (!banner || !btnAccept || !btnDecline) return;
+        
+        if (!localStorage.getItem('alen_cookie_consent')) {
+            setTimeout(function(){
+                banner.style.display = 'flex';
+            }, 1800);
+        }
+        
+        btnAccept.addEventListener('click', function(){
+            localStorage.setItem('alen_cookie_consent', 'accepted');
+            banner.style.display = 'none';
+        });
+        
+        btnDecline.addEventListener('click', function(){
+            localStorage.setItem('alen_cookie_consent', 'declined');
+            banner.style.display = 'none';
+        });
     })();
     </script>
 

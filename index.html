@@ -625,9 +625,9 @@
                     <i class="fa-solid fa-bolt"></i> Obtener Todo el Pack por Solo $27 USD (~$497 MXN)
                 </a>
                 <div class="value-trust-line">
-                    <span><i class="fa-solid fa-shield-halved"></i> Garantía 7 Días</span>
-                    <span><i class="fa-solid fa-infinity"></i> Acceso Vitalicio</span>
                     <span><i class="fa-solid fa-bolt"></i> Descarga Inmediata</span>
+                    <span><i class="fa-solid fa-infinity"></i> Acceso Vitalicio</span>
+                    <span><i class="fa-solid fa-headset"></i> Soporte 1 a 1</span>
                 </div>
             </div>
         </div>
@@ -838,13 +838,13 @@
                 </a>
             </div>
 
-            <!-- Guarantee -->
+            <!-- Support & Delivery Commitment -->
             <div class="guarantee-box">
                 <div class="g-title">
-                    <i class="fa-solid fa-shield-halved" style="font-size:1.3rem;"></i>
-                    100% GARANTÍA DE SATISFACCIÓN — 7 DÍAS SIN RIESGO
+                    <i class="fa-solid fa-circle-check" style="font-size:1.3rem; color:#34d399;"></i>
+                    ENTREGA DIGITAL INMEDIATA & SOPORTE TÉCNICO DIRECTO
                 </div>
-                <p>Pruébalo en tus proyectos reales. Si durante los primeros 7 días sientes que no te ahorra horas de trabajo o no cumple tus expectativas, te devolvemos el 100% de tu dinero inmediatamente, sin preguntas ni trámites.</p>
+                <p>Al confirmar tu pago recibes acceso instantáneo a los enlaces de descarga del software y a toda la biblioteca de recursos 3D. Cuentas con soporte técnico directo vía WhatsApp para asistirte en la instalación y configuración en tu computadora.</p>
             </div>
 
             <!-- Trust Seals -->
@@ -861,7 +861,7 @@
         <div class="container section-title-block">
             <div class="section-tag" style="background:rgba(34,211,238,0.1);color:#22d3ee;border-color:rgba(34,211,238,0.25);">Preguntas Frecuentes</div>
             <h2>Resuelve todas tus <span class="hl-purple">Dudas</span></h2>
-            <p>Todo lo que necesitas saber sobre el software, los bonos D5 Render, pagos y la garantía.</p>
+            <p>Todo lo que necesitas saber sobre el software, los bonos D5 Render, pagos y soporte.</p>
         </div>
         <div class="container faq-container">
             <!-- FAQ 1 -->
@@ -1004,12 +1004,12 @@
                 <summary>
                     <div class="faq-header-left">
                         <span class="faq-num-pill">09</span>
-                        <span class="faq-question-text">¿Cómo funciona la Garantía de Satisfacción de 7 Días?</span>
+                        <span class="faq-question-text">¿Cómo recibo el acceso a los archivos y el soporte técnico?</span>
                     </div>
                     <span class="faq-icon-toggle"><i class="fa-solid fa-chevron-down"></i></span>
                 </summary>
                 <div class="faq-content">
-                    <p>Queremos que compres con total tranquilidad. Tienes <strong>7 días continuos</strong> desde tu compra para probar el organizador, los materiales PBR y los modelos en tus proyectos reales de visualización arquitectónica. Si sientes que no te ahorra horas de trabajo o no cumple tus expectativas, te devolvemos el <strong>100% de tu dinero inmediatamente</strong>, sin preguntas ni complicaciones.</p>
+                    <p>Al ser un producto digital descargable con <strong>entrega inmediata</strong>, tras confirmar tu pago recibes tus accesos al instante para descargar los instaladores y carpetas. Además, cuentas con <strong>soporte técnico personalizado 1 a 1 vía WhatsApp</strong> para ayudarte paso a paso en caso de cualquier duda de instalación o uso en tus programas 3D.</p>
                 </div>
             </details>
         </div>
@@ -1023,12 +1023,21 @@
             </div>
             <p>La herramienta de escritorio definitiva para artistas 3D y arquitectos de visualización.</p>
             <div class="footer-trust">
-                <span><i class="fa-solid fa-shield-halved"></i> Garantía 7 días</span>
+                <span><i class="fa-solid fa-bolt"></i> Entrega Inmediata</span>
                 <span><i class="fa-solid fa-infinity"></i> Licencia vitalicia</span>
                 <span><i class="fa-solid fa-lock"></i> Gumroad &bull; PayPal &bull; Mercado Pago</span>
                 <span><i class="fa-brands fa-windows"></i> Windows 10 / 11</span>
             </div>
-            <p class="footer-copy">&copy; 2026 Alen PBR Organizer &mdash; Software de Escritorio para Windows</p>
+            <div class="footer-legal-links">
+                <a href="terminos.html">Términos y Condiciones</a>
+                <span>&bull;</span>
+                <a href="privacidad.html">Política de Privacidad y Cookies</a>
+                <span>&bull;</span>
+                <a href="guia.html">Guía de Instalación</a>
+                <span>&bull;</span>
+                <a href="catalogo.html">Catálogo 3D</a>
+            </div>
+            <p class="footer-copy">&copy; 2026 Alen PBR Organizer &mdash; Todos los derechos reservados &bull; Arkh Studio</p>
         </div>
     </footer>
 
@@ -1166,6 +1175,47 @@
             });
         }, { threshold: 0.12 });
         els.forEach(function(el){ observer.observe(el); });
+    })();
+    </script>
+
+    <!-- ===== COOKIE CONSENT BANNER ===== -->
+    <div id="cookieBanner" class="cookie-banner" style="display:none;">
+        <div class="cookie-banner-header">
+            <i class="fa-solid fa-cookie-bite"></i>
+            <span>Aviso de Privacidad y Cookies</span>
+        </div>
+        <p>
+            Utilizamos cookies esenciales y de análisis para optimizar tu experiencia en nuestro sitio conforme a nuestra <a href="privacidad.html">Política de Privacidad</a>.
+        </p>
+        <div class="cookie-banner-actions">
+            <button class="btn-cookie-accept" id="btnAcceptCookies">Aceptar Todo</button>
+            <button class="btn-cookie-decline" id="btnDeclineCookies">Rechazar</button>
+        </div>
+    </div>
+
+    <script>
+    // Cookie Consent Logic
+    (function(){
+        const banner = document.getElementById('cookieBanner');
+        const btnAccept = document.getElementById('btnAcceptCookies');
+        const btnDecline = document.getElementById('btnDeclineCookies');
+        if (!banner || !btnAccept || !btnDecline) return;
+        
+        if (!localStorage.getItem('alen_cookie_consent')) {
+            setTimeout(function(){
+                banner.style.display = 'flex';
+            }, 1800);
+        }
+        
+        btnAccept.addEventListener('click', function(){
+            localStorage.setItem('alen_cookie_consent', 'accepted');
+            banner.style.display = 'none';
+        });
+        
+        btnDecline.addEventListener('click', function(){
+            localStorage.setItem('alen_cookie_consent', 'declined');
+            banner.style.display = 'none';
+        });
     })();
     </script>
 
