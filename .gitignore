@@ -1,0 +1,13 @@
+# OS files
+.DS_Store
+Thumbs.db
+*.tmp
+
+# Redundant video duplicates
+*.mov
+*.MOV
+
+# Internal build scripts
+fix_*.js
+*.txt
+build_*.py
