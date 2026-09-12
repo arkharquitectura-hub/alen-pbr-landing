@@ -1,23 +1,65 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     // =========================================================
-    // SMOOTH SCROLL
+    // SMOOTH SCROLL (WITH DYNAMIC STICKY HEADER OFFSET)
     // =========================================================
+    function scrollToTarget(target, href) {
+        const stickyHeader = document.querySelector('.site-sticky-header');
+        const headerOffset = stickyHeader ? stickyHeader.offsetHeight : 80;
+        const elementPosition = target.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset - 16;
+
+        window.scrollTo({
+            top: Math.max(0, offsetPosition),
+            behavior: 'smooth'
+        });
+
+        if (href && history.pushState) {
+            history.pushState(null, null, href);
+        }
+
+        // Highlight checkout container when scrolled into view
+        const checkoutBox = target.id === 'checkout' ? target : target.querySelector('#checkout');
+        if (checkoutBox) {
+            checkoutBox.classList.remove('checkout-highlight');
+            void checkoutBox.offsetWidth;
+            checkoutBox.classList.add('checkout-highlight');
+        }
+        if (typeof exitOverlay !== 'undefined' && exitOverlay) {
+            exitOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        // Show/hide sticky CTA
+        if (typeof stickyCTA !== 'undefined' && stickyCTA) {
+            if (target.id === 'checkout' || target.closest('#pricing')) {
+                stickyCTA.classList.remove('visible');
+            } else {
+                stickyCTA.classList.add('visible');
+            }
+        }
+    }
+
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             const href = this.getAttribute('href');
-            if (href === '#') return;
-            e.preventDefault();
+            if (href === '#' || !href) return;
             const target = document.querySelector(href);
             if (target) {
-                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                // Close exit popup if open
-                exitOverlay.classList.remove('active');
-                // Show sticky CTA after clicking a link
-                stickyCTA.classList.add('visible');
+                e.preventDefault();
+                scrollToTarget(target, href);
             }
         });
     });
+
+    // Handle initial hash on load (e.g. index.html#checkout)
+    if (window.location.hash) {
+        setTimeout(() => {
+            const initialTarget = document.querySelector(window.location.hash);
+            if (initialTarget) {
+                scrollToTarget(initialTarget);
+            }
+        }, 150);
+    }
 
     // =========================================================
     // NAVBAR SCROLL EFFECT
@@ -134,19 +176,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
         window.addEventListener('scroll', showSticky, { passive: true });
 
-        // Hide sticky when pricing section is visible
+        // Hide sticky when pricing or checkout section is visible
         const pricingSection = document.getElementById('pricing');
-        if (pricingSection) {
+        const checkoutSection = document.getElementById('checkout');
+        if (pricingSection || checkoutSection) {
             const pricingObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        stickyCTA.classList.remove('visible');
-                    } else if (stickyShown) {
-                        stickyCTA.classList.add('visible');
-                    }
-                });
-            }, { threshold: 0.3 });
-            pricingObserver.observe(pricingSection);
+                const isVisible = entries.some(entry => entry.isIntersecting);
+                if (isVisible) {
+                    stickyCTA.classList.remove('visible');
+                } else if (stickyShown) {
+                    stickyCTA.classList.add('visible');
+                }
+            }, { threshold: 0.1 });
+            if (pricingSection) pricingObserver.observe(pricingSection);
+            if (checkoutSection) pricingObserver.observe(checkoutSection);
+        }
+
+        // Close sticky CTA on X click
+        const stickyClose = document.getElementById('stickyClose');
+        if (stickyClose) {
+            stickyClose.addEventListener('click', (e) => {
+                e.stopPropagation();
+                stickyCTA.classList.remove('visible');
+                stickyShown = false;
+            });
         }
     }
 

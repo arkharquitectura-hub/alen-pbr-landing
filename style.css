@@ -1282,29 +1282,30 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .value-trust-line i { color: var(--green); }
 
 /* ============================================================
-   PRICING SECTION
+   PRICING SECTION (VIP GOLD EDITION)
    ============================================================ */
 .pricing-section {
   padding: 80px 0;
-  background: var(--bg-2);
-  border-top: 1px solid var(--border);
+  background: radial-gradient(ellipse 75% 50% at 50% 40%, rgba(245, 158, 11, 0.08) 0%, rgba(124, 58, 237, 0.03) 45%, var(--bg-2) 100%);
+  border-top: 1px solid rgba(251, 191, 36, 0.22);
+  position: relative;
 }
 .pricing-card {
   max-width: 580px;
   margin: 0 auto;
-  background: linear-gradient(180deg, var(--bg-3) 0%, #0d0c14 100%);
-  border: 1px solid rgba(124,58,237,0.35);
+  background: linear-gradient(180deg, #13111c 0%, #0d0c14 100%);
+  border: 1.5px solid rgba(251, 191, 36, 0.45);
   border-radius: var(--radius-xl);
   padding: 36px 30px;
   position: relative;
-  box-shadow: 0 0 60px rgba(124,58,237,0.14);
+  box-shadow: 0 0 75px rgba(245, 158, 11, 0.18), 0 25px 60px rgba(0, 0, 0, 0.7);
 }
 .pricing-badge {
   position: absolute;
   top: -13px;
   left: 50%;
   transform: translateX(-50%);
-  background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+  background: linear-gradient(135deg, #f59e0b, #d97706);
   color: #fff;
   font-size: 0.76rem;
   font-weight: 800;
@@ -1313,7 +1314,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   border-radius: 50px;
   white-space: nowrap;
   text-transform: uppercase;
-  box-shadow: 0 4px 14px rgba(124,58,237,0.4);
+  box-shadow: 0 4px 18px rgba(245, 158, 11, 0.45);
 }
 .pricing-name {
   font-family: var(--font-head);
@@ -1521,6 +1522,66 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   margin-bottom: 18px;
   font-weight: 600;
   text-align: center;
+}
+
+/* ============================================================
+   CHECKOUT SECTION / DIRECT SCROLL TARGET (GOLD EDITION)
+   ============================================================ */
+#checkout,
+.checkout-target {
+  scroll-margin-top: 100px;
+  background: linear-gradient(180deg, rgba(251, 191, 36, 0.07) 0%, rgba(251, 191, 36, 0.02) 100%);
+  border: 1.5px solid rgba(251, 191, 36, 0.38);
+  border-radius: var(--radius-lg);
+  padding: 22px 20px 18px;
+  margin-top: 16px;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5), inset 0 0 25px rgba(251, 191, 36, 0.04);
+  position: relative;
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+#checkout.checkout-highlight {
+  animation: checkout-pulse 1.8s ease-out;
+}
+
+@keyframes checkout-pulse {
+  0% {
+    border-color: rgba(251, 191, 36, 0.95);
+    box-shadow: 0 0 50px rgba(251, 191, 36, 0.5), inset 0 0 30px rgba(251, 191, 36, 0.15);
+  }
+  100% {
+    border-color: rgba(251, 191, 36, 0.38);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5), inset 0 0 25px rgba(251, 191, 36, 0.04);
+  }
+}
+
+.checkout-header-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: rgba(251, 191, 36, 0.14);
+  border: 1px solid rgba(251, 191, 36, 0.38);
+  color: #fde68a;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.4px;
+  padding: 7px 16px;
+  border-radius: 50px;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+@media (max-width: 900px) {
+  #checkout,
+  .checkout-target {
+    scroll-margin-top: 115px;
+    padding: 18px 14px 16px;
+  }
+  .checkout-header-badge {
+    font-size: 0.72rem;
+    padding: 6px 10px;
+  }
 }
 
 /* ============================================================
@@ -2228,12 +2289,103 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 .exit-close {
   position: absolute;
-  top: 14px; right: 18px;
+  top: 14px;
+  right: 14px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  color: #e2e8f0;
   font-size: 1.4rem;
-  color: var(--text-faint);
-  transition: color var(--transition);
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition);
+  z-index: 10;
 }
-.exit-close:hover { color: var(--text); }
+.exit-close:hover {
+  background: rgba(239, 68, 68, 0.28);
+  border-color: rgba(239, 68, 68, 0.55);
+  color: #ffffff;
+  transform: scale(1.1);
+}
+
+.ticker-close-btn {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #cbd5e1;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.2s ease;
+  z-index: 5;
+}
+.ticker-close-btn:hover {
+  background: rgba(239, 68, 68, 0.35);
+  border-color: rgba(239, 68, 68, 0.6);
+  color: #ffffff;
+  transform: scale(1.1);
+}
+
+.sticky-cta-close {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  color: #cbd5e1;
+  font-size: 16px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+.sticky-cta-close:hover {
+  background: rgba(239, 68, 68, 0.35);
+  color: #ffffff;
+}
+
+.cookie-close-btn {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #94a3b8;
+  font-size: 15px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.2s ease;
+}
+.cookie-close-btn:hover {
+  background: rgba(239, 68, 68, 0.25);
+  color: #ffffff;
+}
 .exit-badge {
   display: inline-flex;
   align-items: center;

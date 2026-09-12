@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Gracias por tu compra! | Alen PBR Organizer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- Meta Pixel Purchase Event (Opcional: Si usas Meta Ads para medir ventas) -->
+    <!--
+    <script>
+      if (typeof fbq === 'function') {
+        fbq('track', 'Purchase', { currency: 'USD', value: 27.00 });
+      }
+    </script>
+    -->
+
+    <style>
+        body {
+            background-color: #07080d;
+            color: #f8fafc;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .thankyou-wrapper {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 20px;
+        }
+        .thankyou-card {
+            max-width: 680px;
+            width: 100%;
+            background: rgba(18, 22, 36, 0.85);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 45px 35px;
+            text-align: center;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7), 0 0 40px rgba(16, 185, 129, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+        .thankyou-card::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.3) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 25px auto;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(5, 150, 105, 0.4) 100%);
+            border: 2px solid #10b981;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: #34d399;
+            box-shadow: 0 0 30px rgba(16, 185, 129, 0.4);
+        }
+        .badge-verified {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            background: rgba(16, 185, 129, 0.15);
+            border: 1px solid rgba(16, 185, 129, 0.4);
+            border-radius: 20px;
+            color: #34d399;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+        .ty-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: #ffffff;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+        .ty-desc {
+            font-size: 1.05rem;
+            color: #94a3b8;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        .email-alert-box {
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 14px;
+            padding: 18px 22px;
+            text-align: left;
+            margin-bottom: 30px;
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+        }
+        .email-alert-box i {
+            color: #60a5fa;
+            font-size: 1.4rem;
+            margin-top: 3px;
+        }
+        .email-alert-box h4 {
+            margin: 0 0 5px 0;
+            color: #ffffff;
+            font-size: 1rem;
+            font-weight: 700;
+        }
+        .email-alert-box p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #cbd5e1;
+            line-height: 1.5;
+        }
+        .btn-drive {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            width: 100%;
+            padding: 18px 25px;
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            color: #ffffff;
+            font-size: 1.15rem;
+            font-weight: 800;
+            border-radius: 12px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.4);
+            margin-bottom: 15px;
+        }
+        .btn-drive:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(37, 99, 235, 0.6);
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+        }
+        .action-links {
+            display: flex;
+            gap: 12px;
+            margin-top: 15px;
+        }
+        .btn-secondary-action {
+            flex: 1;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 18px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            color: #e2e8f0;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.92rem;
+            transition: all 0.2s;
+        }
+        .btn-secondary-action:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+        }
+        .btn-wa-support {
+            border-color: rgba(16, 185, 129, 0.4);
+            color: #34d399;
+        }
+        .btn-wa-support:hover {
+            background: rgba(16, 185, 129, 0.15);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Sencillo -->
+    <header style="padding: 20px 0; border-bottom: 1px solid rgba(255,255,255,0.06); text-align: center;">
+        <div class="container">
+            <a href="index.html" style="text-decoration: none; color: #ffffff; font-family: 'Outfit', sans-serif; font-size: 1.4rem; font-weight: 800;">
+                <i class="fa-solid fa-cube" style="color:#3b82f6;"></i> Alen <span style="color:#38bdf8;">PBR</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- Contenedor Central -->
+    <main class="thankyou-wrapper">
+        <div class="thankyou-card">
+            
+            <div class="success-icon">
+                <i class="fa-solid fa-check"></i>
+            </div>
+
+            <div class="badge-verified">
+                <i class="fa-solid fa-circle-check"></i> Pago Verificado y Aprobado
+            </div>
+
+            <h1 class="ty-title">¡Gracias por tu compra!</h1>
+            <p class="ty-desc">
+                Ya tienes acceso total e ilimitado a <strong>Alen PBR Organizer</strong> y al <strong>Mega Pack de más de 1,000 Texturas PBR (66 GB)</strong>.
+            </p>
+
+            <!-- Alerta de Clave de Licencia -->
+            <div class="email-alert-box">
+                <i class="fa-solid fa-envelope-circle-check"></i>
+                <div>
+                    <h4>Tu Clave de Licencia está en tu correo</h4>
+                    <p>
+                        Hemos despachado tu código único de activación a la dirección de correo con la que compraste. 
+                        <strong>Por favor revisa tu bandeja de entrada</strong> (y tu carpeta de <em>Spam / Correo no deseado</em> o <em>Promociones</em> si no lo ves en un par de minutos).
+                    </p>
+                </div>
+            </div>
+
+            <!-- Botón Acceso Google Drive -->
+            <a href="TU_ENLACE_GOOGLE_DRIVE_AQUI" target="_blank" class="btn-drive">
+                <i class="fa-brands fa-google-drive" style="font-size: 1.3rem;"></i>
+                Acceder a la Biblioteca en Google Drive (66 GB)
+            </a>
+
+            <!-- Acciones Secundarias -->
+            <div class="action-links">
+                <a href="guia.html" class="btn-secondary-action">
+                    <i class="fa-solid fa-book-open"></i> Ver Guía de Uso
+                </a>
+                <a href="https://wa.me/527221397675?text=Hola%21%20Acabo%20de%20realizar%20mi%20compra%20de%20Alen%20PBR%20Organizer%20y%20tengo%20una%20pregunta%20%F0%9F%99%8F" target="_blank" class="btn-secondary-action btn-wa-support">
+                    <i class="fa-brands fa-whatsapp"></i> Soporte por WhatsApp
+                </a>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer Simple -->
+    <footer style="padding: 25px 0; border-top: 1px solid rgba(255,255,255,0.06); text-align: center; font-size: 0.85rem; color: #64748b;">
+        <p style="margin: 0;">ARKH Arquitectura &bull; Alen PBR Organizer &bull; arkharquitectura@gmail.com</p>
+    </footer>
+
+</body>
+</html>
