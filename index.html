@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alen PBR Organizer | +1,000 Texturas PBR Premium GRATIS para Arquitectos 3D</title>
-    <meta name="description" content="Organiza, previsualiza en 3D y gestiona más de 1,000 materiales PBR desde una aplicación ultrarrápida. Compatible con D5 Render, Blender, Unreal y V-Ray. Pago único.">
+    <title>Alen PBR Organizer | Suite 3D +1,000 Texturas PBR y Recursos D5</title>
+    <meta name="description" content="Organiza, previsualiza en 3D en tiempo real y gestiona más de 1,000 materiales PBR y 800 elementos para D5 Render. Compatible con Blender, Unreal y 3ds Max. Licencia vitalicia.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="preload" as="image" href="assets/mockup.png">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
@@ -73,7 +74,7 @@
         <div class="container" style="position:relative; z-index:1;">
             <div class="hero-badge">
                 <span class="badge-dot"></span>
-                🎁 +1,000 Texturas PBR &amp; +800 Modelos D5 GRATIS
+                ⚡ FASE EARLY BIRD &bull; LICENCIA VITALICIA CON 89% OFF
             </div>
 
             <h1 class="hero-h1">
@@ -97,14 +98,14 @@
                 <a href="#checkout" class="btn-primary">
                     <i class="fa-solid fa-bolt"></i> Obtener Acceso &mdash; $27 USD <span class="old-price">$149.99</span>
                 </a>
-                <a href="catalogo.html" class="btn-secondary">
-                    <i class="fa-solid fa-images"></i> Catálogo Completo
+                <a href="#features" class="btn-secondary">
+                    <i class="fa-solid fa-circle-play"></i> Ver Demostración y Bonos
                 </a>
             </div>
 
             <!-- Hero Video -->
             <div class="hero-video-wrap fade-up">
-                <video width="100%" controls autoplay muted loop playsinline>
+                <video width="100%" controls autoplay muted loop playsinline preload="metadata" poster="assets/mockup.png">
                     <source src="assets/TEXTURE%20PACK%20ALEN%20VIDEO.mp4" type="video/mp4">
                     Tu navegador no soporta el tag de video.
                 </video>
@@ -158,9 +159,7 @@
                 <h3>Visor 3D en Tiempo Real</h3>
                 <p>Previsualiza cualquier material como una esfera hiperrealista con iluminación dinámica antes de arrastrarlo a D5, Blender o Unreal. Cero renders de prueba.</p>
                 <div class="bc-visual">
-                    <video width="100%" autoplay muted loop playsinline style="border-radius:12px;">
-                        <source src="assets/TEXTURE%20PACK%20ALEN%20VIDEO.mp4" type="video/mp4">
-                    </video>
+                    <img src="assets/captura_galeria.png" alt="Visor 3D en tiempo real con previsualización física de materiales" loading="lazy" style="width:100%; aspect-ratio:16/9; object-fit:cover; border-radius:12px;">
                 </div>
             </div>
 
@@ -239,7 +238,7 @@
 
         <div class="container d5-inner">
             <div class="d5-video-wrap fade-up">
-                <video controls autoplay loop muted playsinline>
+                <video id="d5Video" controls autoplay loop muted playsinline preload="none" poster="assets/300_materiales_d5.png">
                     <source src="assets/D5 ELEMENTS AND TEXTURES.mp4" type="video/mp4">
                 </video>
             </div>
@@ -336,12 +335,17 @@
     <!-- ===== LIBRARY / CATALOG BANNER ===== -->
     <section class="library-section">
         <div class="container">
-            <div class="section-tag" style="background:rgba(52,211,153,0.1);color:#34d399;border-color:rgba(52,211,153,0.25);">Valor Incluido de $196 USD GRATIS</div>
+            <div class="section-tag" style="background:rgba(52,211,153,0.1);color:#34d399;border-color:rgba(52,211,153,0.25);">🎁 $176 USD en Bonos Incluidos de Regalo</div>
             <h2 style="font-family:var(--font-head);font-size:clamp(2rem,4vw,3rem);font-weight:900;letter-spacing:-1.5px;margin:16px 0 14px;">Una biblioteca PBR masiva <span class="hl-green">lista para producción</span></h2>
-            <p style="color:var(--text-muted);font-size:1.05rem;max-width:580px;margin:0 auto 36px;">Maderas, metales, concretos, mármoles, rocas y +30 HDRIs panorámicos en 4K/8K. Todo incluido con tu licencia de $27 USD.</p>
-            <a href="catalogo.html" class="btn-primary" style="display:inline-flex;">
-                <i class="fa-solid fa-layer-group"></i> Explorar Catálogo Completo (+1,000 Texturas)
-            </a>
+            <p style="color:var(--text-muted);font-size:1.05rem;max-width:580px;margin:0 auto 28px;">Maderas, metales, concretos, mármoles, rocas y +30 HDRIs panorámicos en 4K/8K. Todo incluido con tu licencia única de $27 USD.</p>
+            <div style="display:flex; justify-content:center; gap:16px; flex-wrap:wrap;">
+                <a href="#checkout" class="btn-primary" style="display:inline-flex;">
+                    <i class="fa-solid fa-bolt"></i> Obtener Suite + Bonos de Regalo
+                </a>
+                <a href="catalogo.html" target="_blank" class="btn-secondary" style="display:inline-flex;">
+                    <i class="fa-solid fa-layer-group"></i> Ver Catálogo Completo (Nueva Ventana)
+                </a>
+            </div>
         </div>
     </section>
 
@@ -769,44 +773,28 @@
             <div id="checkout" class="checkout-target">
                 <div class="checkout-header-badge">
                     <i class="fa-solid fa-shield-halved" style="color:var(--gold);"></i>
-                    <span>PAGO 100% SEGURO Y ENCRIPTADO &bull; ELIGE TU FORMA DE PAGO</span>
+                    <span>PAGO 100% SEGURO Y ENCRIPTADO &bull; ENTREGA DIGITAL INMEDIATA</span>
                 </div>
 
                 <div class="payment-stack">
-                    <!-- Gumroad Button (Pink) -->
-                    <a href="https://alanisalejandro.gumroad.com/l/alen-pbr-organizer" target="_blank" class="btn-pay btn-gumroad">
+                    <!-- Gumroad Button (Pink - Recomendado Global) -->
+                    <a href="https://alanisalejandro.gumroad.com/l/alen-pbr-organizer" target="_blank" class="btn-pay btn-gumroad" data-track-checkout="gumroad">
                         <div class="pay-btn-icon">
                             <img src="assets/logos/logo-gumroad.png" alt="Gumroad" class="pay-logo-img">
                         </div>
                         <div class="pay-btn-body">
-                            <div class="pay-btn-tag">PAGO INTERNACIONAL (GUMROAD)</div>
+                            <div class="pay-btn-tag" style="background:#59003c; color:#ffffff;">⭐ RECOMENDADO GLOBAL &bull; ENTREGA 100% AUTOMÁTICA</div>
                             <div class="pay-btn-main">
-                                <span class="pay-btn-action">Comprar con Tarjeta (Gumroad)</span>
+                                <span class="pay-btn-action">Comprar con Tarjeta o PayPal (Gumroad)</span>
                                 <span class="pay-btn-price-pill">$27 USD</span>
                             </div>
-                            <div class="pay-btn-sub">Tarjetas, Apple Pay & Google Pay &bull; Acceso Inmediato</div>
+                            <div class="pay-btn-sub">Tarjetas de Débito/Crédito, Apple Pay, Google Pay y PayPal &bull; Descarga Instantánea</div>
                         </div>
                         <div class="pay-btn-arrow"><i class="fa-solid fa-chevron-right"></i></div>
                     </a>
 
-                    <!-- PayPal Button (Gold) -->
-                    <a href="https://paypal.me/Donaciones428/27USD" target="_blank" class="btn-pay btn-paypal">
-                        <div class="pay-btn-icon">
-                            <img src="assets/logos/logo-paypal.png" alt="PayPal" class="pay-logo-img paypal-img">
-                        </div>
-                        <div class="pay-btn-body">
-                            <div class="pay-btn-tag">PAGO DIRECTO GLOBAL (PAYPAL)</div>
-                            <div class="pay-btn-main">
-                                <span class="pay-btn-action">Pagar con PayPal</span>
-                                <span class="pay-btn-price-pill">$27 USD</span>
-                            </div>
-                            <div class="pay-btn-sub">Saldo PayPal, Débito o Crédito &bull; Protección al Comprador</div>
-                        </div>
-                        <div class="pay-btn-arrow"><i class="fa-solid fa-chevron-right"></i></div>
-                    </a>
-
-                    <!-- Mercado Pago Button (Blue) -->
-                    <a href="https://mpago.li/2sRXXo7" target="_blank" class="btn-pay btn-mercadopago">
+                    <!-- Mercado Pago Button (Blue - México y LATAM) -->
+                    <a href="https://mpago.li/2sRXXo7" target="_blank" class="btn-pay btn-mercadopago" data-track-checkout="mercadopago">
                         <div class="pay-btn-icon mp-bg">
                             <img src="assets/logos/logo-mercadopago.png" alt="Mercado Pago" class="pay-logo-img mp-img">
                         </div>
@@ -816,27 +804,43 @@
                                 <span class="pay-btn-action">Pagar con Mercado Pago / Transferencia</span>
                                 <span class="pay-btn-price-pill">$497 MXN</span>
                             </div>
-                            <div class="pay-btn-sub">💳 <strong>¡Hasta 6 Meses Sin Intereses!</strong> &bull; Débito, Crédito, SPEI u OXXO</div>
+                            <div class="pay-btn-sub">💳 <strong>¡Hasta 6 Meses Sin Intereses de $82 MXN!</strong> &bull; Débito, Crédito, SPEI u OXXO</div>
                         </div>
                         <div class="pay-btn-arrow"><i class="fa-solid fa-chevron-right"></i></div>
                     </a>
 
-                    <!-- Payment Confirmation Notice Box -->
+                    <!-- PayPal Button (Gold - Directo) -->
+                    <a href="https://paypal.me/Donaciones428/27USD" target="_blank" class="btn-pay btn-paypal" data-track-checkout="paypal">
+                        <div class="pay-btn-icon">
+                            <img src="assets/logos/logo-paypal.png" alt="PayPal" class="pay-logo-img paypal-img">
+                        </div>
+                        <div class="pay-btn-body">
+                            <div class="pay-btn-tag">PAGO DIRECTO VÍA PAYPAL ($27 USD)</div>
+                            <div class="pay-btn-main">
+                                <span class="pay-btn-action">Pagar Directo con PayPal</span>
+                                <span class="pay-btn-price-pill">$27 USD</span>
+                            </div>
+                            <div class="pay-btn-sub">Saldo PayPal o Tarjetas con Protección al Comprador</div>
+                        </div>
+                        <div class="pay-btn-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+                    </a>
+
+                    <!-- Payment Confirmation & VIP Support Notice Box -->
                     <div class="payment-confirm-notice">
                         <div class="pcn-title">
-                            <i class="fa-brands fa-whatsapp"></i>
-                            <span>¿YA PAGASTE POR PAYPAL O MERCADO PAGO?</span>
+                            <i class="fa-solid fa-circle-check" style="color:#34d399;"></i>
+                            <span>ENTREGA DIGITAL INSTANTÁNEA & SOPORTE VIP EN VIVO</span>
                         </div>
                         <p class="pcn-desc">
-                            Envíanos tu comprobante a WhatsApp para confirmar tu pago y darte <strong>acceso inmediato</strong> a las descargas y soporte.
+                            Recibes tus enlaces de descarga y accesos al instante en tu correo electrónico tras completar tu compra. Si compraste por Mercado Pago / PayPal o requieres ayuda técnica en la instalación en tu PC, nuestro equipo te asiste en vivo por WhatsApp:
                         </p>
-                        <a href="https://wa.me/527221397675?text=Hola%2C%20ya%20realic%C3%A9%20mi%20pago%20para%20Alen%20PBR%20Organizer%20%28PayPal%20%2F%20Mercado%20Pago%29.%20Adjunto%20mi%20comprobante%20para%20activar%20mi%20acceso%20inmediato%20%F0%9F%99%8F" target="_blank" class="pcn-btn">
-                            <i class="fa-brands fa-whatsapp"></i> Enviar Comprobante por WhatsApp
+                        <a href="https://wa.me/527221397675?text=Hola%2C%20acabo%20de%20adquirir%20Alen%20PBR%20Organizer%20y%20deseo%20confirmar%20mi%20acceso%20o%20soporte%20VIP%20%F0%9F%99%8F" target="_blank" class="pcn-btn" data-track-whatsapp="true">
+                            <i class="fa-brands fa-whatsapp"></i> Chat de Asistencia y Soporte VIP por WhatsApp
                         </a>
                     </div>
 
                     <!-- Direct WhatsApp Help Button -->
-                    <a href="https://wa.me/527221397675?text=Hola%21%20Vi%20el%20video%20de%20Alen%20PBR%20Organizer%20y%20tengo%20una%20pregunta%20antes%20de%20comprar%20%F0%9F%91%8B" target="_blank" class="btn-whatsapp">
+                    <a href="https://wa.me/527221397675?text=Hola%21%20Tengo%20una%20pregunta%20sobre%20Alen%20PBR%20Organizer%20antes%20de%20comprar%20%F0%9F%91%8B" target="_blank" class="btn-whatsapp" data-track-whatsapp="true">
                         <i class="fa-regular fa-circle-question"></i> ¿Tienes alguna duda antes de comprar? Escríbenos en vivo
                     </a>
                 </div>
@@ -1046,7 +1050,7 @@
     </footer>
 
     <!-- ===== FLOATING WHATSAPP BUTTON ===== -->
-    <a href="https://wa.me/527221397675?text=Hola%21%20Vi%20el%20video%20de%20Alen%20PBR%20Organizer%20y%20tengo%20una%20pregunta%20antes%20de%20comprar%20%F0%9F%91%8B" target="_blank" class="floating-whatsapp" aria-label="Ayuda por WhatsApp">
+    <a href="https://wa.me/527221397675?text=Hola%21%20Tengo%20una%20pregunta%20sobre%20Alen%20PBR%20Organizer%20antes%20de%20comprar%20%F0%9F%91%8B" target="_blank" class="floating-whatsapp" aria-label="Ayuda por WhatsApp" data-track-whatsapp="true">
         <i class="fa-brands fa-whatsapp"></i>
         <span>¿Dudas? Chat en vivo</span>
     </a>

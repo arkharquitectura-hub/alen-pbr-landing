@@ -703,7 +703,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   background: var(--bg-4);
   border: 1px solid var(--border);
 }
-.bento-card.card-visor video {
+.bento-card.card-visor video,
+.bento-card.card-visor img {
   width: 100%;
   aspect-ratio: 16/9;
   object-fit: cover;

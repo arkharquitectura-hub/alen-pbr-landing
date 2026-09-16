@@ -294,4 +294,98 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // =========================================================
+    // META PIXEL EVENT TRACKING & CONVERSION BOOSTERS
+    // =========================================================
+    function sendMetaPixelEvent(eventName, params = {}) {
+        if (typeof fbq === 'function') {
+            try {
+                fbq('track', eventName, params);
+                console.log(`[Meta Pixel] Event sent: ${eventName}`, params);
+            } catch (err) {
+                console.warn('[Meta Pixel] Error sending event:', err);
+            }
+        }
+    }
+
+    // Track InitiateCheckout on payment buttons
+    document.querySelectorAll('[data-track-checkout]').forEach(btn => {
+        btn.addEventListener('click', function () {
+            const provider = this.getAttribute('data-track-checkout');
+            if (provider === 'gumroad') {
+                sendMetaPixelEvent('InitiateCheckout', {
+                    content_name: 'Alen PBR Organizer Full Pack - Gumroad',
+                    content_category: 'Software & 3D Assets',
+                    currency: 'USD',
+                    value: 27.00
+                });
+            } else if (provider === 'mercadopago') {
+                sendMetaPixelEvent('InitiateCheckout', {
+                    content_name: 'Alen PBR Organizer Full Pack - Mercado Pago',
+                    content_category: 'Software & 3D Assets',
+                    currency: 'MXN',
+                    value: 497.00
+                });
+            } else if (provider === 'paypal') {
+                sendMetaPixelEvent('InitiateCheckout', {
+                    content_name: 'Alen PBR Organizer Full Pack - PayPal',
+                    content_category: 'Software & 3D Assets',
+                    currency: 'USD',
+                    value: 27.00
+                });
+            }
+        });
+    });
+
+    // Track WhatsApp support / inquiry clicks
+    document.querySelectorAll('[data-track-whatsapp]').forEach(btn => {
+        btn.addEventListener('click', function () {
+            sendMetaPixelEvent('Contact', {
+                content_name: 'WhatsApp Customer Support',
+                content_category: 'Lead / Support'
+            });
+        });
+    });
+
+    // Track ViewContent when Pricing section is viewed
+    const pricingElem = document.getElementById('pricing');
+    if (pricingElem) {
+        let pricingTracked = false;
+        const pricingObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !pricingTracked) {
+                    pricingTracked = true;
+                    sendMetaPixelEvent('ViewContent', {
+                        content_name: 'Alen PBR Organizer Pricing Table',
+                        content_category: 'Pricing Section',
+                        currency: 'USD',
+                        value: 27.00
+                    });
+                }
+            });
+        }, { threshold: 0.25 });
+        pricingObserver.observe(pricingElem);
+    }
+
+    // =========================================================
+    // D5 VIDEO LAZY LOADING (Saves bandwidth & memory on load)
+    // =========================================================
+    const d5Video = document.getElementById('d5Video');
+    if (d5Video) {
+        const videoObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    if (d5Video.paused) {
+                        d5Video.play().catch(() => {});
+                    }
+                } else {
+                    if (!d5Video.paused) {
+                        d5Video.pause();
+                    }
+                }
+            });
+        }, { threshold: 0.2 });
+        videoObserver.observe(d5Video);
+    }
+
 });
