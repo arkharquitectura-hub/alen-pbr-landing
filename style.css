@@ -3002,3 +3002,10 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   .floating-whatsapp span { display: none; }
   .floating-whatsapp { padding: 9px; border-radius: 50%; }
 }
+. o p t i m i z e - c v   {   c o n t e n t - v i s i b i l i t y :   a u t o ;   c o n t a i n - i n t r i n s i c - s i z e :   1 0 0 0 p x ;   }  
+ 
+/* Optimization Classes */
+.optimize-cv { content-visibility: auto; contain-intrinsic-size: 1000px; }
+
+/* Optimization */
+.optimize-cv { content-visibility: auto; contain-intrinsic-size: 1000px; }
