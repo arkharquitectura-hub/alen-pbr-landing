@@ -61,7 +61,12 @@
 /* ---- Reset ------------------------------------------------ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+html { 
+  scroll-behavior: smooth; 
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  width: 100%;
+}
 
 body {
   background: var(--bg);
@@ -70,6 +75,8 @@ body {
   font-size: 16px;
   line-height: 1.55;
   overflow-x: hidden;
+  width: 100%;
+  position: relative;
 }
 
 img, video { max-width: 100%; display: block; }
@@ -2853,133 +2860,143 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
    RESPONSIVE — SMARTPHONES (< 600px)
    ============================================================ */
 @media (max-width: 600px) {
-  .container { padding: 0 10px; }
+  .container { padding: 0 20px; }
 
   /* Top Bar Adaptation — 1 single fluid line */
   .ab-text-full { display: none; }
-  .ab-text-mobile { display: inline; font-size: 0.74rem; white-space: nowrap; }
+  .ab-text-mobile { display: inline; font-size: 0.76rem; white-space: nowrap; }
   .announcement-bar {
-    padding: 5px 6px;
-    font-size: 0.74rem;
-    gap: 4px;
+    padding: 8px 10px;
+    font-size: 0.76rem;
+    gap: 6px;
     justify-content: center;
     white-space: nowrap;
     overflow: hidden;
   }
-  .announcement-bar .countdown-bar { font-size: 0.72rem; gap: 2px; white-space: nowrap; }
-  .announcement-bar .cd-unit { padding: 1px 3px; font-size: 0.7rem; }
+  .announcement-bar .countdown-bar { font-size: 0.74rem; gap: 3px; white-space: nowrap; }
+  .announcement-bar .cd-unit { padding: 2px 4px; font-size: 0.72rem; }
   .announcement-link { display: none; }
 
-  .nav-content { height: 46px; gap: 6px; }
-  .logo { font-size: 0.98rem; gap: 4px; }
-  .nav-links { gap: 4px; }
-  .lang-switcher { font-size: 0.72rem; gap: 2px; }
-  .nav-catalog-btn { padding: 4px 7px !important; font-size: 0.72rem !important; gap: 3px; }
-  .nav-cta-btn { padding: 5px 8px !important; font-size: 0.73rem !important; }
+  .nav-content { height: 54px; gap: 6px; }
+  .logo { font-size: 1.05rem; gap: 4px; }
+  .nav-links { gap: 6px; }
+  .lang-switcher { display: none !important; } /* Hidden on mobile to save space */
+  .nav-catalog-btn { padding: 6px 10px !important; font-size: 0.8rem !important; gap: 0; }
+  .nav-catalog-btn span { display: none; } /* Show icon only */
+  .nav-cta-btn { padding: 6px 12px !important; font-size: 0.78rem !important; }
 
-  .hero-section { padding: 24px 0 20px; }
+  /* Increase padding for breathing room */
+  .hero-section { padding: 40px 0 32px; }
+  .pain-section { padding: 50px 0; }
+  .features-section, .d5-section, .for-who-section, .testimonials-section, .comparison-section, .value-section, .pricing-section, .faq-section { padding: 50px 0; }
+  .library-section { padding: 48px 0; }
+
   .hero-badge {
-    font-size: 0.74rem;
-    padding: 4px 11px;
-    margin-bottom: 12px;
-    letter-spacing: 0;
+    font-size: 0.76rem;
+    padding: 6px 14px;
+    margin-bottom: 20px;
+    letter-spacing: 0.2px;
   }
   .hero-h1 {
-    font-size: 1.95rem;
-    letter-spacing: -1px;
-    line-height: 1.1;
-    margin-bottom: 10px;
+    font-size: 2.2rem;
+    letter-spacing: -1.2px;
+    line-height: 1.15;
+    margin-bottom: 16px;
   }
   .hero-sub {
-    font-size: 0.88rem;
-    line-height: 1.45;
-    margin-bottom: 12px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 24px;
+    padding: 0 10px;
   }
   .hero-stars {
-    margin-bottom: 18px;
-    font-size: 0.8rem;
+    margin-bottom: 24px;
+    font-size: 0.85rem;
   }
-  .hero-stars span { display: inline; margin-left: 4px; font-size: 0.78rem; }
+  .hero-stars span { display: inline; margin-left: 6px; font-size: 0.82rem; }
 
   .hero-cta-group {
-    gap: 8px;
-    margin-bottom: 24px;
+    gap: 12px;
+    margin-bottom: 32px;
   }
   .btn-primary {
     width: 100%;
-    font-size: 0.92rem;
-    padding: 13px 14px;
+    font-size: 1rem;
+    padding: 16px 20px;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 6px;
+    gap: 8px;
     text-align: center;
+    border-radius: var(--radius-md);
   }
-  .btn-secondary { width: 100%; font-size: 0.86rem; padding: 10px 12px; }
+  .btn-secondary { width: 100%; font-size: 0.92rem; padding: 14px 16px; }
 
-  .bento-grid { grid-template-columns: 1fr; gap: 10px; }
-  .bento-card { grid-column: span 1 !important; padding: 18px 14px; border-radius: 14px; }
-  .bento-card .bc-icon { width: 38px; height: 38px; font-size: 1.05rem; margin-bottom: 10px; }
-  .bento-card .bc-stat { font-size: 2.2rem; }
+  .bento-grid { grid-template-columns: 1fr; gap: 16px; }
+  .bento-card { grid-column: span 1 !important; padding: 28px 24px; border-radius: 20px; }
+  .bento-card .bc-icon { width: 44px; height: 44px; font-size: 1.15rem; margin-bottom: 14px; }
+  .bento-card .bc-stat { font-size: 2.5rem; margin-bottom: 8px; }
 
   .logos-track {
     grid-template-columns: repeat(2, 1fr);
-    gap: 6px;
+    gap: 10px;
   }
+  .logo-chip { padding: 10px 12px; }
 
-  .d5-stats { flex-direction: column; align-items: stretch; gap: 8px; }
-  .d5-stat-card { max-width: 100%; padding: 16px 12px; }
-  .d5-stat-card .stat-num { font-size: 2.1rem; }
+  .d5-stats { flex-direction: column; align-items: stretch; gap: 12px; }
+  .d5-stat-card { max-width: 100%; padding: 24px 20px; border-radius: 18px; }
+  .d5-stat-card .stat-num { font-size: 2.3rem; margin-bottom: 6px; }
 
-  .for-who-grid { grid-template-columns: 1fr; gap: 10px; }
-  .who-card { padding: 18px 14px; }
+  .for-who-grid { grid-template-columns: 1fr; gap: 16px; }
+  .who-card { padding: 28px 24px; border-radius: 20px; }
 
-  .pricing-card { padding: 28px 14px; border-radius: 20px; }
-  .pricing-badge { font-size: 0.7rem; padding: 4px 12px; top: -11px; }
-  .pricing-name { font-size: 1.25rem; }
-  .pricing-deal-box { padding: 14px 12px; }
-  .pricing-price-big { font-size: 3.2rem; letter-spacing: -1.5px; }
-  .pricing-price-big sup { font-size: 1.3rem; }
-  .pricing-price-big .currency-label { font-size: 1.15rem; }
-  .pricing-bonuses-box { padding: 12px 12px; }
-  .p-bonus-item { font-size: 0.8rem; gap: 6px; }
-  .p-bonus-left { font-size: 0.8rem; }
-  .pricing-core-item { font-size: 0.8rem; }
+  .pricing-card { padding: 40px 24px; border-radius: 24px; }
+  .pricing-badge { font-size: 0.74rem; padding: 6px 14px; top: -14px; }
+  .pricing-name { font-size: 1.4rem; margin-bottom: 12px; }
+  .pricing-deal-box { padding: 20px 16px; border-radius: 20px; margin-bottom: 24px; }
+  .pricing-price-big { font-size: 3.5rem; letter-spacing: -1.5px; }
+  .pricing-price-big sup { font-size: 1.4rem; }
+  .pricing-price-big .currency-label { font-size: 1.25rem; }
+  .pricing-bonuses-box { padding: 20px 16px; border-radius: 20px; }
+  .p-bonus-item { font-size: 0.86rem; gap: 8px; margin-bottom: 12px; }
+  .p-bonus-left { font-size: 0.86rem; }
+  .pricing-core-item { font-size: 0.86rem; margin-bottom: 12px; }
 
   /* Payment buttons on mobile */
-  .btn-pay { padding: 12px 14px; gap: 10px; }
-  .pay-btn-icon { width: 38px; height: 38px; border-radius: 8px; }
-  .pay-btn-action { font-size: 0.88rem; }
-  .pay-btn-price-pill { font-size: 0.95rem; padding: 2px 7px; }
-  .pay-btn-sub { font-size: 0.7rem; }
+  .payment-stack { gap: 12px; margin-top: 24px; }
+  .btn-pay { padding: 16px 18px; gap: 14px; border-radius: 20px; }
+  .pay-btn-icon { width: 42px; height: 42px; border-radius: 10px; }
+  .pay-btn-action { font-size: 0.94rem; margin-bottom: 4px; }
+  .pay-btn-price-pill { font-size: 1rem; padding: 4px 10px; }
+  .pay-btn-sub { font-size: 0.76rem; }
 
   /* Floating WhatsApp on mobile */
   .floating-whatsapp {
-    bottom: 72px;
-    right: 10px;
-    padding: 7px 12px;
-    font-size: 0.76rem;
+    bottom: 74px;
+    right: 14px;
+    padding: 10px 16px;
+    font-size: 0.82rem;
     z-index: 1000;
   }
 
   .value-savings-banner {
-    font-size: 0.84rem;
-    padding: 10px 12px;
-    margin: 16px 0 12px;
-    letter-spacing: 0;
+    font-size: 0.9rem;
+    padding: 14px 16px;
+    margin: 24px 0 16px;
+    letter-spacing: 0.2px;
+    border-radius: 12px;
   }
-  .value-today-amt { font-size: 1.65rem; }
-  .value-item { gap: 6px; padding: 10px 0; }
-  .value-name { font-size: 0.82rem; }
+  .value-today-amt { font-size: 1.85rem; }
+  .value-item { gap: 10px; padding: 14px 0; }
+  .value-name { font-size: 0.88rem; }
 
-  .exit-modal { padding: 26px 14px; border-radius: 18px; }
-  .exit-title { font-size: 1.3rem; }
+  .exit-modal { padding: 32px 20px; border-radius: 24px; }
+  .exit-title { font-size: 1.4rem; margin-bottom: 16px; }
 
   #social-ticker { display: none !important; }
 }
 
 @media (max-width: 360px) {
-  .nav-catalog-btn span { display: none; }
   .logo { font-size: 0.92rem; }
   .value-savings-banner { font-size: 0.78rem; padding: 8px 10px; }
   .floating-whatsapp span { display: none; }
