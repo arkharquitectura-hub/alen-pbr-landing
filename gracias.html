@@ -224,15 +224,16 @@
                 Ya tienes acceso total e ilimitado a <strong>Alen PBR Organizer</strong> y al <strong>Mega Pack de más de 1,000 Texturas PBR (66 GB)</strong>.
             </p>
 
-            <!-- Alerta de Clave de Licencia -->
-            <div class="email-alert-box">
-                <i class="fa-solid fa-envelope-circle-check"></i>
-                <div>
-                    <h4>Tu Clave de Licencia está en tu correo</h4>
-                    <p>
-                        Hemos despachado tu código único de activación a la dirección de correo con la que compraste. 
-                        <strong>Por favor revisa tu bandeja de entrada</strong> (y tu carpeta de <em>Spam / Correo no deseado</em> o <em>Promociones</em> si no lo ves en un par de minutos).
-                    </p>
+            <!-- Código de Activación Dinámico -->
+            <div class="activation-box" style="background: rgba(16, 185, 129, 0.1); border: 2px dashed rgba(16, 185, 129, 0.4); border-radius: 16px; padding: 25px; margin-bottom: 30px;">
+                <h3 style="color: #34d399; margin-top: 0; font-size: 1.2rem; font-weight: 800; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                    <i class="fa-solid fa-key"></i> Tu Código de Activación
+                </h3>
+                <p style="color: #cbd5e1; font-size: 0.95rem; margin-bottom: 15px; line-height: 1.5;">
+                    <strong style="color: #ef4444; font-weight: 800;">¡IMPORTANTE!</strong> Por favor anota, copia o toma una foto de este código y <strong>guárdalo en un lugar seguro</strong> por si llegas a cerrar esta página.
+                </p>
+                <div style="background: rgba(0,0,0,0.5); padding: 15px; border-radius: 12px; font-family: monospace; font-size: 1.8rem; letter-spacing: 2px; color: #fff; font-weight: bold; border: 1px solid rgba(255,255,255,0.1); user-select: all;" id="generated-key">
+                    GENERANDO...
                 </div>
             </div>
 
@@ -260,5 +261,24 @@
         <p style="margin: 0;">ARKH Arquitectura &bull; Alen PBR Organizer &bull; arkharquitectura@gmail.com</p>
     </footer>
 
+    <!-- Generador de Códigos Matemáticos -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            try {
+                // Generar 8 caracteres aleatorios en formato hexadecimal
+                const randomHex = Math.floor(Math.random() * 0xFFFFFFFF).toString(16).toUpperCase().padStart(8, '0');
+                
+                // Aplicar la fórmula matemática (ALEN_SECRET_2026)
+                const hash = CryptoJS.SHA256(randomHex + "ALEN_SECRET_2026").toString(CryptoJS.enc.Hex).substring(0, 6).toUpperCase();
+                
+                // Formar y mostrar la clave final
+                const finalKey = "ALEN-" + randomHex + "-" + hash;
+                document.getElementById('generated-key').innerText = finalKey;
+            } catch(e) {
+                document.getElementById('generated-key').innerText = "ERROR - CONTACTA SOPORTE";
+            }
+        });
+    </script>
 </body>
 </html>
