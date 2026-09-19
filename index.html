@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="preload" as="image" href="assets/hero_video_poster.webp" type="image/webp" fetchpriority="high">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"></noscript>
 
@@ -112,7 +113,7 @@
                     <div class="hero-asset-grid">
                         <div class="asset-card">
                             <div class="asset-thumb-wrap">
-                                <img src="assets/thumb_pbr_wood.webp" alt="Materiales PBR" class="asset-thumb" width="56" height="56" loading="eager">
+                                <img src="assets/thumb_pbr_wood.webp" alt="Materiales PBR" class="asset-thumb" width="56" height="56" loading="eager" decoding="async" fetchpriority="high">
                             </div>
                             <div class="asset-info">
                                 <span class="asset-number">+1,000</span>
@@ -122,7 +123,7 @@
 
                         <div class="asset-card">
                             <div class="asset-thumb-wrap">
-                                <img src="assets/thumb_d5_mat.webp" alt="Materiales D5" class="asset-thumb" width="56" height="56" loading="eager">
+                                <img src="assets/thumb_d5_mat.webp" alt="Materiales D5" class="asset-thumb" width="56" height="56" loading="eager" decoding="async" fetchpriority="high">
                             </div>
                             <div class="asset-info">
                                 <span class="asset-number">+300</span>
@@ -132,7 +133,7 @@
 
                         <div class="asset-card">
                             <div class="asset-thumb-wrap">
-                                <img src="assets/thumb_d5_model.webp" alt="Modelos 3D D5" class="asset-thumb" width="56" height="56" loading="eager">
+                                <img src="assets/thumb_d5_model.webp" alt="Modelos 3D D5" class="asset-thumb" width="56" height="56" loading="eager" decoding="async" fetchpriority="high">
                             </div>
                             <div class="asset-info">
                                 <span class="asset-number">+800</span>
@@ -142,7 +143,7 @@
 
                         <div class="asset-card">
                             <div class="asset-thumb-wrap">
-                                <img src="assets/thumb_hdri.webp" alt="HDRIs" class="asset-thumb" width="56" height="56" loading="eager">
+                                <img src="assets/thumb_hdri.webp" alt="HDRIs" class="asset-thumb" width="56" height="56" loading="eager" decoding="async" fetchpriority="high">
                             </div>
                             <div class="asset-info">
                                 <span class="asset-number">+30</span>
@@ -242,32 +243,32 @@
 
                 <div class="compat-logos-grid">
                     <div class="compat-card">
-                        <img src="assets/logos/logo-d5render.png" alt="D5 Render" class="compat-logo" loading="lazy">
+                        <img src="assets/logos/logo-d5render.png" alt="D5 Render" class="compat-logo" width="48" height="48" loading="lazy" decoding="async">
                         <span class="compat-name">D5 Render</span>
                         <span class="compat-badge-native">Nativo .d5m / .d5a</span>
                     </div>
                     <div class="compat-card">
-                        <img src="assets/logos/logo-blender.png" alt="Blender" class="compat-logo" loading="lazy">
+                        <img src="assets/logos/logo-blender.png" alt="Blender" class="compat-logo" width="48" height="48" loading="lazy" decoding="async">
                         <span class="compat-name">Blender</span>
                         <span class="compat-badge">Shaders PBR</span>
                     </div>
                     <div class="compat-card">
-                        <img src="assets/logos/logo-3dsmax.png" alt="3ds Max" class="compat-logo" loading="lazy">
+                        <img src="assets/logos/logo-3dsmax.png" alt="3ds Max" class="compat-logo" width="48" height="48" loading="lazy" decoding="async">
                         <span class="compat-name">3ds Max</span>
                         <span class="compat-badge">Maps 4K</span>
                     </div>
                     <div class="compat-card">
-                        <img src="assets/logos/logo-vray.png" alt="V-Ray" class="compat-logo" loading="lazy">
+                        <img src="assets/logos/logo-vray.png" alt="V-Ray" class="compat-logo" width="48" height="48" loading="lazy" decoding="async">
                         <span class="compat-name">V-Ray</span>
                         <span class="compat-badge">PBR Workflows</span>
                     </div>
                     <div class="compat-card">
-                        <img src="assets/logos/logo-corona.png" alt="Chaos Corona" class="compat-logo" loading="lazy">
+                        <img src="assets/logos/logo-corona.png" alt="Chaos Corona" class="compat-logo" width="48" height="48" loading="lazy" decoding="async">
                         <span class="compat-name">Corona</span>
                         <span class="compat-badge">Materiales PBR</span>
                     </div>
                     <div class="compat-card">
-                        <img src="assets/logos/logo-unreal.png" alt="Unreal Engine 5" class="compat-logo" loading="lazy">
+                        <img src="assets/logos/logo-unreal.png" alt="Unreal Engine 5" class="compat-logo" width="48" height="48" loading="lazy" decoding="async">
                         <span class="compat-name">Unreal Engine 5</span>
                         <span class="compat-badge">PBR Nanite</span>
                     </div>
@@ -393,7 +394,7 @@
                             <h3 class="feature-title">Visor 3D en Tiempo Real</h3>
                             <p class="feature-desc">Rota e inspecciona las esferas de materiales con iluminación dinámica de estudio. Evalúa el relieve, la rugosidad y la reflexión de la textura antes de importarla.</p>
                             <div class="feature-preview-img">
-                                <img src="assets/captura_galeria.png" alt="Visor de galería 3D Alen PBR" loading="lazy">
+                                <img src="assets/captura_galeria.png" alt="Visor de galería 3D Alen PBR" width="1917" height="1017" loading="lazy" decoding="async">
                             </div>
                         </div>
                     </div>
@@ -453,7 +454,7 @@
                     <div class="megapack-card">
                         <div class="megapack-badge">+1,000 ARCHIVOS</div>
                         <div class="megapack-thumb-wrap">
-                            <img src="assets/thumb_pbr_wood.webp" alt="Materiales PBR en Alen Pack" class="megapack-thumb" loading="lazy">
+                            <img src="assets/thumb_pbr_wood.webp" alt="Materiales PBR en Alen Pack" class="megapack-thumb" width="72" height="72" loading="lazy" decoding="async">
                         </div>
                         <h3 class="megapack-title">+1,000 Materiales PBR</h3>
                         <p class="megapack-desc">Texturas arquitectónicas sin costuras (seamless) con mapas completos en alta resolución: BaseColor, Normal, Roughness, Displacement, Ambient Occlusion y Metallic.</p>
@@ -470,7 +471,7 @@
                     <div class="megapack-card">
                         <div class="megapack-badge">FORMATO .D5M</div>
                         <div class="megapack-thumb-wrap">
-                            <img src="assets/thumb_d5_mat.webp" alt="Materiales configurados para D5 Render" class="megapack-thumb" loading="lazy">
+                            <img src="assets/thumb_d5_mat.webp" alt="Materiales configurados para D5 Render" class="megapack-thumb" width="72" height="72" loading="lazy" decoding="async">
                         </div>
                         <h3 class="megapack-title">+300 Materiales para D5 Render</h3>
                         <p class="megapack-desc">Configurados y calibrados para la iluminación física y el ray tracing en tiempo real de D5 Render. Doble clic y quedan aplicados con la rugosidad e índice de refracción perfectos.</p>
@@ -486,7 +487,7 @@
                     <div class="megapack-card">
                         <div class="megapack-badge">OPTIMIZADOS .D5A</div>
                         <div class="megapack-thumb-wrap">
-                            <img src="assets/thumb_d5_model.webp" alt="Modelos 3D listos para D5 Render" class="megapack-thumb" loading="lazy">
+                            <img src="assets/thumb_d5_model.webp" alt="Modelos 3D listos para D5 Render" class="megapack-thumb" width="72" height="72" loading="lazy" decoding="async">
                         </div>
                         <h3 class="megapack-title">+800 Modelos 3D para D5</h3>
                         <p class="megapack-desc">Mobiliario de diseño contemporáneo, iluminación decorativa, plantas y accesorios con pivotes centrados y poligonaje optimizado para no congelar tus escenas.</p>
@@ -502,7 +503,7 @@
                     <div class="megapack-card">
                         <div class="megapack-badge">RANGO DINÁMICO COMPLETO</div>
                         <div class="megapack-thumb-wrap">
-                            <img src="assets/thumb_hdri.webp" alt="HDRIs para iluminación de escenas 3D" class="megapack-thumb" loading="lazy">
+                            <img src="assets/thumb_hdri.webp" alt="HDRIs para iluminación de escenas 3D" class="megapack-thumb" width="72" height="72" loading="lazy" decoding="async">
                         </div>
                         <h3 class="megapack-title">+30 HDRIs Profesionales</h3>
                         <p class="megapack-desc">Cielos diurnos despejados, atardeceres dorados (golden hour), días nublados de iluminación difusa suave y entornos de estudio para destacar arquitectura e interiores.</p>
@@ -533,7 +534,7 @@
                 <div class="d5-layout-grid">
                     <div class="d5-info-col">
                         <div class="d5-badge-top">
-                            <img src="assets/logos/logo-d5render.png" alt="D5" class="d5-mini-icon">
+                            <img src="assets/logos/logo-d5render.png" alt="D5" class="d5-mini-icon" width="20" height="20" loading="lazy" decoding="async">
                             <span>FLUJO ACELERADO EN D5 RENDER</span>
                         </div>
                         <h2 class="d5-title">HECHO PARA MULTIPLICAR TU VELOCIDAD EN D5 RENDER</h2>
