@@ -1,11 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     // =========================================================
-    // SMOOTH SCROLL (WITH DYNAMIC STICKY HEADER OFFSET)
+    // 1. SMOOTH SCROLL WITH DYNAMIC NAVBAR OFFSET
     // =========================================================
     function scrollToTarget(target, href) {
-        const stickyHeader = document.querySelector('.site-sticky-header');
-        const headerOffset = stickyHeader ? stickyHeader.offsetHeight : 80;
+        const header = document.querySelector('.site-header');
+        const headerOffset = header ? header.offsetHeight : 72;
         const elementPosition = target.getBoundingClientRect().top;
         const offsetPosition = elementPosition + window.pageYOffset - headerOffset - 16;
 
@@ -18,23 +18,19 @@ document.addEventListener('DOMContentLoaded', () => {
             history.pushState(null, null, href);
         }
 
-        // Highlight checkout container when scrolled into view
-        const checkoutBox = target.id === 'checkout' ? target : target.querySelector('#checkout');
-        if (checkoutBox) {
-            checkoutBox.classList.remove('checkout-highlight');
-            void checkoutBox.offsetWidth;
-            checkoutBox.classList.add('checkout-highlight');
-        }
-        if (typeof exitOverlay !== 'undefined' && exitOverlay) {
-            exitOverlay.classList.remove('active');
-            document.body.style.overflow = '';
-        }
-        // Show/hide sticky CTA
-        if (typeof stickyCTA !== 'undefined' && stickyCTA) {
-            if (target.id === 'checkout' || target.closest('#pricing')) {
-                stickyCTA.classList.remove('visible');
-            } else {
-                stickyCTA.classList.add('visible');
+        // Highlight checkout buttons when targeted
+        if (target.id === 'checkout') {
+            target.classList.add('checkout-targeted');
+            setTimeout(() => {
+                target.classList.remove('checkout-targeted');
+            }, 1800);
+        } else if (target.id === 'pricing') {
+            const pricingBox = target.querySelector('.pricing-box');
+            if (pricingBox) {
+                pricingBox.style.boxShadow = '0 0 50px rgba(0, 122, 255, 0.6)';
+                setTimeout(() => {
+                    pricingBox.style.boxShadow = '';
+                }, 1800);
             }
         }
     }
@@ -51,259 +47,203 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Handle initial hash on load (e.g. index.html#checkout)
+    // Handle direct URL hash landing (e.g. index.html#checkout)
     if (window.location.hash) {
         setTimeout(() => {
             const initialTarget = document.querySelector(window.location.hash);
             if (initialTarget) {
                 scrollToTarget(initialTarget);
             }
-        }, 150);
+        }, 200);
     }
 
     // =========================================================
-    // NAVBAR SCROLL EFFECT
+    // 2. NAVBAR SCROLL EFFECT
     // =========================================================
-    const navbar = document.querySelector('.navbar');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            navbar.style.background = 'rgba(12, 13, 16, 0.9)';
-            navbar.style.boxShadow = '0 10px 30px rgba(0,0,0,0.5)';
-        } else {
-            navbar.style.background = 'rgba(12, 13, 16, 0.7)';
-            navbar.style.boxShadow = 'none';
-        }
+    const navbar = document.getElementById('navbar');
+    if (navbar) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 40) {
+                navbar.style.background = 'rgba(7, 7, 9, 0.95)';
+                navbar.style.boxShadow = '0 10px 30px rgba(0,0,0,0.6)';
+            } else {
+                navbar.style.background = 'rgba(7, 7, 9, 0.85)';
+                navbar.style.boxShadow = 'none';
+            }
+        }, { passive: true });
+    }
+
+    // =========================================================
+    // 3. FAQ ACCORDION INTERACTIVITY
+    // =========================================================
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach(item => {
+        const questionBtn = item.querySelector('.faq-question');
+        if (!questionBtn) return;
+
+        questionBtn.addEventListener('click', () => {
+            const isActive = item.classList.contains('active');
+
+            // Close other items (clean accordion behavior)
+            faqItems.forEach(other => {
+                if (other !== item) {
+                    other.classList.remove('active');
+                    const otherBtn = other.querySelector('.faq-question');
+                    if (otherBtn) otherBtn.setAttribute('aria-expanded', 'false');
+                }
+            });
+
+            if (isActive) {
+                item.classList.remove('active');
+                questionBtn.setAttribute('aria-expanded', 'false');
+            } else {
+                item.classList.add('active');
+                questionBtn.setAttribute('aria-expanded', 'true');
+            }
+        });
     });
 
-    // =========================================================
-    // COUNTDOWN TIMER (synced via localStorage)
-    // =========================================================
-    const COUNTDOWN_KEY = 'alen_pbr_deadline';
-    const DURATION_MS = 24 * 60 * 60 * 1000; // 24 hours
-
-    function getDeadline() {
-        let deadline = localStorage.getItem(COUNTDOWN_KEY);
-        if (!deadline) {
-            deadline = Date.now() + DURATION_MS;
-            localStorage.setItem(COUNTDOWN_KEY, deadline);
-        }
-        return parseInt(deadline);
+    // Open first FAQ by default
+    if (faqItems.length > 0) {
+        faqItems[0].classList.add('active');
+        const firstBtn = faqItems[0].querySelector('.faq-question');
+        if (firstBtn) firstBtn.setAttribute('aria-expanded', 'true');
     }
 
-    const deadline = getDeadline();
-
-    function pad(n) { return String(n).padStart(2, '0'); }
-
-    function updateCountdowns() {
-        const remaining = Math.max(0, deadline - Date.now());
-        const h = Math.floor(remaining / 3_600_000);
-        const m = Math.floor((remaining % 3_600_000) / 60_000);
-        const s = Math.floor((remaining % 60_000) / 1_000);
-
-        // Announcement bar
-        const cdH = document.getElementById('cd-hours');
-        const cdM = document.getElementById('cd-mins');
-        const cdS = document.getElementById('cd-secs');
-        if (cdH) cdH.textContent = pad(h);
-        if (cdM) cdM.textContent = pad(m);
-        if (cdS) cdS.textContent = pad(s);
-
-        // Pricing section
-        const pcH = document.getElementById('pc-hours');
-        const pcM = document.getElementById('pc-mins');
-        const pcS = document.getElementById('pc-secs');
-        if (pcH) pcH.textContent = pad(h);
-        if (pcM) pcM.textContent = pad(m);
-        if (pcS) pcS.textContent = pad(s);
-
-        // Exit popup
-        const exH = document.getElementById('exit-hours');
-        const exM = document.getElementById('exit-mins');
-        const exS = document.getElementById('exit-secs');
-        if (exH) exH.textContent = pad(h);
-        if (exM) exM.textContent = pad(m);
-        if (exS) exS.textContent = pad(s);
-
-        // If expired, reset
-        if (remaining === 0) {
-            localStorage.removeItem(COUNTDOWN_KEY);
-        }
-    }
-
-    updateCountdowns();
-    setInterval(updateCountdowns, 1000);
-
     // =========================================================
-    // LICENSES COUNTDOWN (urgency counter)
-    // =========================================================
-    const LICENSES_KEY = 'alen_pbr_licenses';
-    let licenses = parseInt(localStorage.getItem(LICENSES_KEY) || '17');
-    const licensesEl = document.getElementById('licensesLeft');
-    if (licensesEl) licensesEl.textContent = licenses;
-
-    // Slowly decrease licenses count (visual trick)
-    function decreaseLicenses() {
-        if (licenses > 5) {
-            const delay = Math.random() * 60_000 + 90_000; // 1.5 - 2.5 min
-            setTimeout(() => {
-                licenses = Math.max(5, licenses - 1);
-                localStorage.setItem(LICENSES_KEY, licenses);
-                if (licensesEl) {
-                    licensesEl.textContent = licenses;
-                    licensesEl.style.animation = 'none';
-                    licensesEl.offsetHeight; // reflow
-                    licensesEl.style.animation = 'urgency-pulse 0.5s ease';
-                }
-                decreaseLicenses();
-            }, delay);
-        }
-    }
-    decreaseLicenses();
-
-    // =========================================================
-    // STICKY MOBILE CTA
+    // 4. STICKY MOBILE CTA BAR
     // =========================================================
     const stickyCTA = document.getElementById('stickyCTA');
-    let stickyShown = false;
+    const stickyClose = document.getElementById('stickyClose');
+    let stickyClosedByUser = false;
 
     if (stickyCTA) {
-        const showSticky = () => {
-            if (!stickyShown && window.scrollY > 300) {
+        const checkoutTarget = document.getElementById('checkout') || document.getElementById('pricing');
+
+        const handleStickyScroll = () => {
+            if (stickyClosedByUser || window.innerWidth > 768) {
+                stickyCTA.classList.remove('visible');
+                return;
+            }
+
+            const scrollY = window.scrollY;
+            const heroHeight = 450;
+
+            if (checkoutTarget) {
+                const checkoutRect = checkoutTarget.getBoundingClientRect();
+                const isNearCheckout = checkoutRect.top <= window.innerHeight && checkoutRect.bottom >= 0;
+                if (isNearCheckout) {
+                    stickyCTA.classList.remove('visible');
+                    return;
+                }
+            }
+
+            if (scrollY > heroHeight) {
                 stickyCTA.classList.add('visible');
-                stickyShown = true;
+            } else {
+                stickyCTA.classList.remove('visible');
             }
         };
 
-        window.addEventListener('scroll', showSticky, { passive: true });
+        window.addEventListener('scroll', handleStickyScroll, { passive: true });
+        window.addEventListener('resize', handleStickyScroll, { passive: true });
 
-        // Hide sticky when pricing or checkout section is visible
-        const pricingSection = document.getElementById('pricing');
-        const checkoutSection = document.getElementById('checkout');
-        if (pricingSection || checkoutSection) {
-            const pricingObserver = new IntersectionObserver((entries) => {
-                const isVisible = entries.some(entry => entry.isIntersecting);
-                if (isVisible) {
-                    stickyCTA.classList.remove('visible');
-                } else if (stickyShown) {
-                    stickyCTA.classList.add('visible');
-                }
-            }, { threshold: 0.1 });
-            if (pricingSection) pricingObserver.observe(pricingSection);
-            if (checkoutSection) pricingObserver.observe(checkoutSection);
-        }
-
-        // Close sticky CTA on X click
-        const stickyClose = document.getElementById('stickyClose');
         if (stickyClose) {
             stickyClose.addEventListener('click', (e) => {
                 e.stopPropagation();
+                stickyClosedByUser = true;
                 stickyCTA.classList.remove('visible');
-                stickyShown = false;
             });
         }
     }
 
     // =========================================================
-    // EXIT INTENT POPUP
+    // 5. HERO VIDEO & D5 VIDEO CONTROLS (Zero Click Autoplay)
     // =========================================================
-    const exitOverlay = document.getElementById('exitOverlay');
-    const exitClose = document.getElementById('exitClose');
-    const exitDismiss = document.getElementById('exitDismiss');
-    const exitCTA = document.getElementById('exitCTA');
-    const EXIT_SHOWN_KEY = 'alen_pbr_exit_shown';
+    const heroVideo = document.getElementById('heroVideo');
+    const heroAudioToggle = document.getElementById('heroAudioToggle');
+    const heroAudioIcon = document.getElementById('heroAudioIcon');
+    const heroAudioText = document.getElementById('heroAudioText');
 
-    let exitShown = sessionStorage.getItem(EXIT_SHOWN_KEY) === '1';
+    if (heroVideo) {
+        heroVideo.muted = true;
+        heroVideo.defaultMuted = true;
+        const ensureHeroPlaying = () => {
+            if (heroVideo.paused) {
+                heroVideo.muted = true;
+                heroVideo.play().catch(() => {});
+            }
+        };
+        ensureHeroPlaying();
+        ['loadedmetadata', 'canplay', 'touchstart', 'scroll'].forEach(evt => {
+            window.addEventListener(evt, ensureHeroPlaying, { passive: true, once: true });
+        });
 
-    function showExitPopup() {
-        if (!exitShown && exitOverlay) {
-            exitShown = true;
-            sessionStorage.setItem(EXIT_SHOWN_KEY, '1');
-            exitOverlay.classList.add('active');
-            document.body.style.overflow = 'hidden';
+        if (heroAudioToggle) {
+            heroAudioToggle.addEventListener('click', () => {
+                heroVideo.muted = !heroVideo.muted;
+                if (!heroVideo.muted) {
+                    heroVideo.volume = 1.0;
+                    if (heroAudioIcon) heroAudioIcon.className = 'fa-solid fa-volume-high';
+                    if (heroAudioText) heroAudioText.textContent = 'Audio Activado';
+                    heroAudioToggle.classList.add('audio-active');
+                } else {
+                    if (heroAudioIcon) heroAudioIcon.className = 'fa-solid fa-volume-xmark';
+                    if (heroAudioText) heroAudioText.textContent = 'Activar Sonido';
+                    heroAudioToggle.classList.remove('audio-active');
+                }
+            });
         }
     }
 
-    function closeExitPopup() {
-        if (exitOverlay) {
-            exitOverlay.classList.remove('active');
-            document.body.style.overflow = '';
+    const d5Video = document.getElementById('d5Video');
+    if (d5Video) {
+        d5Video.muted = true;
+        d5Video.defaultMuted = true;
+        const playD5 = () => {
+            if (d5Video.paused) {
+                d5Video.muted = true;
+                d5Video.play().catch(() => {});
+            }
+        };
+
+        if ('IntersectionObserver' in window) {
+            const videoObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        playD5();
+                    } else {
+                        if (!d5Video.paused) {
+                            d5Video.pause();
+                        }
+                    }
+                });
+            }, { threshold: 0.15 });
+            videoObserver.observe(d5Video);
+        } else {
+            playD5();
         }
-    }
 
-    // Trigger on mouse leaving viewport (desktop)
-    document.addEventListener('mouseleave', (e) => {
-        if (e.clientY <= 10 && !exitShown) {
-            setTimeout(showExitPopup, 200);
-        }
-    });
-
-    // Trigger on mobile after 45s of inactivity
-    let mobileTimer;
-    function resetMobileTimer() {
-        clearTimeout(mobileTimer);
-        mobileTimer = setTimeout(() => {
-            if (window.innerWidth <= 900) showExitPopup();
-        }, 45_000);
-    }
-    ['scroll', 'touchstart', 'click'].forEach(ev => {
-        window.addEventListener(ev, resetMobileTimer, { passive: true });
-    });
-    resetMobileTimer();
-
-    if (exitClose) exitClose.addEventListener('click', closeExitPopup);
-    if (exitDismiss) exitDismiss.addEventListener('click', closeExitPopup);
-    if (exitCTA) exitCTA.addEventListener('click', closeExitPopup);
-
-    // Close on overlay click
-    if (exitOverlay) {
-        exitOverlay.addEventListener('click', (e) => {
-            if (e.target === exitOverlay) closeExitPopup();
+        // Additional user touch/scroll unlock fallback for strict mobile browser policies
+        ['touchstart', 'scroll'].forEach(evt => {
+            window.addEventListener(evt, () => {
+                if (d5Video.getBoundingClientRect().top < window.innerHeight && d5Video.getBoundingClientRect().bottom > 0) {
+                    playD5();
+                }
+            }, { passive: true, once: true });
         });
     }
 
-    // Close on Escape key
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') closeExitPopup();
-    });
-
     // =========================================================
-    // SCROLL ANIMATIONS (IntersectionObserver)
-    // =========================================================
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) entry.target.classList.add('is-visible');
-        });
-    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-
-    document.querySelectorAll('.fade-in-up, .fade-in-left, .fade-in-right').forEach(el => observer.observe(el));
-
-    // =========================================================
-    // COPY BUTTONS
-    // =========================================================
-    document.querySelectorAll('.btn-copy').forEach(btn => {
-        btn.addEventListener('click', function () {
-            const original = this.innerHTML;
-            this.innerHTML = '<i class="fa-solid fa-check"></i> Copied!';
-            this.style.color = '#22c55e';
-            this.style.borderColor = '#22c55e';
-            setTimeout(() => {
-                this.innerHTML = original;
-                this.style.color = 'white';
-                this.style.borderColor = 'var(--clr-border)';
-            }, 2000);
-        });
-    });
-
-    // =========================================================
-    // META PIXEL EVENT TRACKING & CONVERSION BOOSTERS
+    // 6. META PIXEL EVENT TRACKING (Strict Real Tracking)
     // =========================================================
     function sendMetaPixelEvent(eventName, params = {}) {
         if (typeof fbq === 'function') {
             try {
                 fbq('track', eventName, params);
-                console.log(`[Meta Pixel] Event sent: ${eventName}`, params);
+                console.log(`[Meta Pixel] Tracked: ${eventName}`, params);
             } catch (err) {
-                console.warn('[Meta Pixel] Error sending event:', err);
+                console.warn('[Meta Pixel] Error tracking event:', err);
             }
         }
     }
@@ -314,21 +254,21 @@ document.addEventListener('DOMContentLoaded', () => {
             const provider = this.getAttribute('data-track-checkout');
             if (provider === 'gumroad') {
                 sendMetaPixelEvent('InitiateCheckout', {
-                    content_name: 'Alen PBR Organizer Full Pack - Gumroad',
+                    content_name: 'Alen PBR Organizer Full Suite - Gumroad',
                     content_category: 'Software & 3D Assets',
                     currency: 'USD',
                     value: 27.00
                 });
             } else if (provider === 'mercadopago') {
                 sendMetaPixelEvent('InitiateCheckout', {
-                    content_name: 'Alen PBR Organizer Full Pack - Mercado Pago',
+                    content_name: 'Alen PBR Organizer Full Suite - Mercado Pago',
                     content_category: 'Software & 3D Assets',
                     currency: 'MXN',
                     value: 497.00
                 });
             } else if (provider === 'paypal') {
                 sendMetaPixelEvent('InitiateCheckout', {
-                    content_name: 'Alen PBR Organizer Full Pack - PayPal',
+                    content_name: 'Alen PBR Organizer Full Suite - PayPal',
                     content_category: 'Software & 3D Assets',
                     currency: 'USD',
                     value: 27.00
@@ -337,7 +277,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Track WhatsApp support / inquiry clicks
+    // Track WhatsApp support click
     document.querySelectorAll('[data-track-whatsapp]').forEach(btn => {
         btn.addEventListener('click', function () {
             sendMetaPixelEvent('Contact', {
@@ -347,16 +287,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Track ViewContent when Pricing section is viewed
+    // Track ViewContent when pricing section is viewed
     const pricingElem = document.getElementById('pricing');
-    if (pricingElem) {
+    if (pricingElem && 'IntersectionObserver' in window) {
         let pricingTracked = false;
         const pricingObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting && !pricingTracked) {
                     pricingTracked = true;
                     sendMetaPixelEvent('ViewContent', {
-                        content_name: 'Alen PBR Organizer Pricing Table',
+                        content_name: 'Alen PBR Organizer Pricing Section',
                         content_category: 'Pricing Section',
                         currency: 'USD',
                         value: 27.00
@@ -365,27 +305,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }, { threshold: 0.25 });
         pricingObserver.observe(pricingElem);
-    }
-
-    // =========================================================
-    // D5 VIDEO LAZY LOADING (Saves bandwidth & memory on load)
-    // =========================================================
-    const d5Video = document.getElementById('d5Video');
-    if (d5Video) {
-        const videoObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    if (d5Video.paused) {
-                        d5Video.play().catch(() => {});
-                    }
-                } else {
-                    if (!d5Video.paused) {
-                        d5Video.pause();
-                    }
-                }
-            });
-        }, { threshold: 0.2 });
-        videoObserver.observe(d5Video);
     }
 
 });
