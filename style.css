@@ -175,6 +175,229 @@ button {
 }
 
 /* ============================================================
+   TOP URGENCY BANNER (High-Conversion Flash Urgency Bar)
+   ============================================================ */
+.top-urgency-banner {
+  background: linear-gradient(90deg, #991b1b 0%, #7c2d12 25%, #1e1b4b 60%, #0369a1 100%);
+  background-size: 200% 200%;
+  animation: bannerGradientFlow 8s ease infinite;
+  color: #ffffff;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(254, 240, 138, 0.35);
+  box-shadow: 0 4px 20px rgba(185, 28, 28, 0.35);
+  font-family: var(--font-body);
+  z-index: 1001;
+}
+
+@keyframes bannerGradientFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.banner-shimmer {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+  transform: skewX(-20deg);
+  animation: bannerShimmer 4s infinite;
+  pointer-events: none;
+}
+
+@keyframes bannerShimmer {
+  0% { left: -100%; }
+  40%, 100% { left: 200%; }
+}
+
+.top-urgency-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 8px 16px;
+  max-width: 1320px;
+  margin: 0 auto;
+  font-size: 0.88rem;
+  line-height: 1.3;
+}
+
+.banner-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #fef08a;
+  color: #7f1d1d;
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  padding: 3px 9px;
+  border-radius: 999px;
+  box-shadow: 0 0 12px rgba(254, 240, 138, 0.6);
+  white-space: nowrap;
+  animation: badgePulse 2s infinite ease-in-out;
+}
+
+@keyframes badgePulse {
+  0%, 100% { transform: scale(1); filter: brightness(1); }
+  50% { transform: scale(1.05); filter: brightness(1.15); box-shadow: 0 0 18px rgba(254, 240, 138, 0.9); }
+}
+
+.banner-text-desktop {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #f8fafc;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.banner-price-lead {
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.banner-price-tag {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(254, 240, 138, 0.5);
+  padding: 2px 8px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.banner-mxn-highlight {
+  font-family: var(--font-head);
+  font-weight: 900;
+  font-size: 1.05rem;
+  color: #fef08a;
+  text-shadow: 0 0 10px rgba(254, 240, 138, 0.5);
+}
+
+.banner-usd-highlight {
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: #38bdf8;
+}
+
+.banner-strikethrough {
+  text-decoration: line-through;
+  color: #fca5a5;
+  font-size: 0.82rem;
+  margin-left: 2px;
+}
+
+.banner-discount-chip {
+  background: #dc2626;
+  color: #ffffff;
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 1px 6px;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.banner-timer-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 3px 10px;
+  border-radius: 8px;
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 0.82rem;
+  color: #ffffff;
+  white-space: nowrap;
+}
+
+.timer-digits {
+  color: #fef08a;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.05em;
+  font-weight: 800;
+}
+
+.banner-cta-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #ffffff;
+  color: #0f172a;
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: 0.82rem;
+  padding: 5px 14px;
+  border-radius: 6px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  text-decoration: none;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.banner-cta-button:hover {
+  background: #fef08a;
+  color: #7f1d1d;
+  transform: translateY(-1px) scale(1.02);
+  box-shadow: 0 4px 16px rgba(254, 240, 138, 0.4);
+}
+
+.banner-action-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.banner-text-mobile {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .top-urgency-banner .banner-badge {
+    display: none; /* eliminate duplicate badge on mobile */
+  }
+  .top-urgency-inner {
+    padding: 6px 10px;
+    gap: 5px;
+    flex-direction: column;
+    align-items: center;
+  }
+  .banner-text-desktop {
+    display: none;
+  }
+  .banner-text-mobile {
+    display: block;
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-align: center;
+    line-height: 1.25;
+    color: #f8fafc;
+  }
+  .banner-action-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+  }
+  .banner-cta-button {
+    padding: 3px 12px;
+    font-size: 0.76rem;
+    border-radius: 5px;
+  }
+  .banner-timer-wrap {
+    padding: 2px 8px;
+    font-size: 0.74rem;
+  }
+}
+
+/* ============================================================
    NAVBAR (Sticky, Minimalist, Precision)
    ============================================================ */
 .site-header {
@@ -581,6 +804,26 @@ button {
   border-radius: 999px;
 }
 
+.price-badge-urgent {
+  font-family: var(--font-head);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.5);
+  color: #fca5a5;
+  padding: 4px 10px;
+  border-radius: 999px;
+  animation: badgePulse 2s infinite ease-in-out;
+}
+
+.price-usd-sub {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--accent-cyan);
+  margin-left: 4px;
+}
+
 .price-local {
   font-size: 0.8rem;
   color: var(--text-muted);
@@ -621,6 +864,155 @@ button {
 .btn-primary-glow:hover {
   transform: translateY(-2px);
   box-shadow: 0 12px 36px rgba(0, 122, 255, 0.65);
+}
+
+/* Enhanced Hero CTA Button Styles (Ultra-Llamativo & High-Converting) */
+.btn-primary-glow.btn-hero-cta {
+  background: linear-gradient(135deg, #0284c7 0%, #0066ff 45%, #4f46e5 100%);
+  background-size: 200% 200%;
+  animation: ctaBreathPulse 2.4s infinite ease-in-out, ctaGradientFlow 6s ease infinite;
+  border: 1.5px solid rgba(255, 255, 255, 0.45);
+  box-shadow: 0 8px 30px rgba(0, 102, 255, 0.6), 0 0 20px rgba(56, 189, 248, 0.4);
+  padding: 16px 22px;
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  display: block;
+  width: 100%;
+  cursor: pointer;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+}
+
+@keyframes ctaGradientFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes ctaBreathPulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 8px 28px rgba(0, 102, 255, 0.55), 0 0 15px rgba(56, 189, 248, 0.35);
+  }
+  50% {
+    transform: scale(1.018);
+    box-shadow: 0 12px 38px rgba(0, 102, 255, 0.8), 0 0 30px rgba(56, 189, 248, 0.65), 0 0 0 4px rgba(0, 102, 255, 0.2);
+  }
+}
+
+.btn-hero-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  width: 100%;
+}
+
+.btn-hero-main-title {
+  font-family: var(--font-head);
+  font-size: 1.12rem;
+  font-weight: 900;
+  letter-spacing: 0.03em;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  line-height: 1.2;
+}
+
+.btn-bolt-icon {
+  color: #fef08a;
+  filter: drop-shadow(0 0 8px rgba(254, 240, 138, 0.9));
+  animation: boltPulse 1.6s infinite ease-in-out;
+}
+
+@keyframes boltPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.25); filter: drop-shadow(0 0 12px #fef08a); }
+}
+
+.btn-arrow-icon {
+  font-size: 1rem;
+  color: #ffffff;
+  transition: transform var(--transition-fast);
+}
+
+.btn-primary-glow.btn-hero-cta:hover .btn-arrow-icon {
+  transform: translateX(5px);
+}
+
+.btn-hero-subtitle {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #e0f2fe;
+  letter-spacing: 0.02em;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.btn-primary-glow.btn-hero-cta:hover {
+  transform: translateY(-2px) scale(1.02);
+  border-color: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 14px 45px rgba(0, 102, 255, 0.85), 0 0 35px rgba(56, 189, 248, 0.7);
+}
+
+/* Direct PayPal Hero Button (Gold & High-Contrast) */
+.btn-hero-paypal {
+  display: block;
+  width: 100%;
+  background: linear-gradient(135deg, #ffc439 0%, #ffb703 50%, #f59e0b 100%);
+  color: #002244;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: var(--radius-md);
+  padding: 12px 18px;
+  text-decoration: none;
+  box-shadow: 0 4px 18px rgba(245, 158, 11, 0.35), 0 0 12px rgba(255, 196, 57, 0.25);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), filter var(--transition-fast);
+  cursor: pointer;
+}
+
+.btn-hero-paypal:hover {
+  transform: translateY(-2px) scale(1.015);
+  filter: brightness(1.06);
+  box-shadow: 0 8px 24px rgba(245, 158, 11, 0.55), 0 0 20px rgba(255, 196, 57, 0.45);
+}
+
+.btn-paypal-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  width: 100%;
+}
+
+.btn-paypal-main-title {
+  font-family: var(--font-head);
+  font-size: 1.02rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: #002244;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  line-height: 1.2;
+}
+
+.btn-paypal-main-title i {
+  font-size: 1.2rem;
+  color: #003087;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.15));
+}
+
+.btn-paypal-subtitle {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #1e293b;
+  letter-spacing: 0.01em;
 }
 
 .hero-microcopy {
@@ -1746,6 +2138,13 @@ button {
   margin-left: 6px;
 }
 
+.price-usd-hero {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--accent-cyan);
+  margin-left: 10px;
+}
+
 .price-footnote {
   font-size: 0.88rem;
   color: #34d399;
@@ -1826,51 +2225,264 @@ button {
   justify-content: space-between;
   padding: 16px 20px;
   border-radius: var(--radius-md);
-  border: 1px solid var(--border);
+  border: 1.5px solid transparent;
   transition: all var(--transition-fast);
   position: relative;
   overflow: hidden;
+  text-decoration: none;
+  cursor: pointer;
 }
 
-/* 1. Gumroad: Rosa / Pink Oficial */
+/* Bright Shimmer Effect Sweep ("que esos botones brillen") */
+.btn-checkout::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -150%;
+  width: 70%;
+  height: 200%;
+  background: linear-gradient(
+    105deg,
+    transparent 20%,
+    rgba(255, 255, 255, 0.5) 50%,
+    transparent 80%
+  );
+  transform: rotate(25deg);
+  animation: checkoutShimmerSweep 3.6s infinite ease-in-out;
+  pointer-events: none;
+}
+
+@keyframes checkoutShimmerSweep {
+  0% { left: -150%; opacity: 0; }
+  15% { opacity: 1; }
+  45% { left: 180%; opacity: 1; }
+  46%, 100% { left: 180%; opacity: 0; }
+}
+
+/* 1. Gumroad: Rosa / Pink Oficial (#FF90E8) */
 .btn-checkout-gumroad {
-  background: linear-gradient(135deg, #ff3399 0%, #d81b60 100%);
-  border-color: rgba(255, 105, 180, 0.65);
-  box-shadow: 0 8px 24px rgba(216, 27, 96, 0.35);
+  background: linear-gradient(135deg, #ff90e8 0%, #ff6ee0 100%);
+  border-color: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 8px 28px rgba(255, 144, 232, 0.5), 0 0 18px rgba(255, 144, 232, 0.35);
+  animation: glowPulseGumroad 2.8s infinite ease-in-out;
+}
+
+.btn-checkout-gumroad::after {
+  animation-delay: 0s;
+}
+
+@keyframes glowPulseGumroad {
+  0%, 100% {
+    box-shadow: 0 8px 26px rgba(255, 144, 232, 0.45), 0 0 16px rgba(255, 144, 232, 0.3);
+    border-color: rgba(255, 255, 255, 0.85);
+  }
+  50% {
+    box-shadow: 0 14px 40px rgba(255, 144, 232, 0.9), 0 0 35px rgba(255, 144, 232, 0.7), 0 0 0 4px rgba(255, 144, 232, 0.35);
+    border-color: #ffffff;
+  }
 }
 
 .btn-checkout-gumroad:hover {
-  transform: translateY(-2px);
-  background: linear-gradient(135deg, #ff4d94 0%, #e60067 100%);
-  border-color: rgba(255, 140, 205, 0.85);
-  box-shadow: 0 12px 32px rgba(216, 27, 96, 0.55);
+  transform: translateY(-3px) scale(1.015);
+  background: linear-gradient(135deg, #ffa8ed 0%, #ff7fe4 100%);
+  box-shadow: 0 16px 44px rgba(255, 144, 232, 0.95), 0 0 48px rgba(255, 144, 232, 0.8);
+  border-color: #ffffff;
 }
 
-/* 2. Mercado Pago: México / SPEI / OXXO */
+.btn-checkout-gumroad .checkout-btn-title {
+  color: #000000;
+  font-weight: 900;
+  text-shadow: none;
+}
+
+.btn-checkout-gumroad .checkout-btn-sub {
+  color: #18181b;
+  font-weight: 600;
+}
+
+.btn-checkout-gumroad .checkout-btn-icon {
+  background: #000000;
+  color: #ff90e8;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+.btn-checkout-gumroad .checkout-btn-arrow {
+  color: #000000;
+}
+
+/* 2. Mercado Pago: México / SPEI / OXXO / Meses (#009EE3) */
 .btn-checkout-mp {
-  background: rgba(0, 158, 227, 0.12);
-  border-color: rgba(0, 158, 227, 0.45);
+  background: linear-gradient(135deg, #009ee3 0%, #006eb3 100%);
+  border-color: rgba(125, 211, 252, 0.75);
+  box-shadow: 0 8px 28px rgba(0, 158, 227, 0.5), 0 0 18px rgba(0, 158, 227, 0.35);
+  animation: glowPulseMP 2.8s infinite ease-in-out;
+}
+
+.btn-checkout-mp::after {
+  animation-delay: 1.2s;
+}
+
+@keyframes glowPulseMP {
+  0%, 100% {
+    box-shadow: 0 8px 26px rgba(0, 158, 227, 0.45), 0 0 16px rgba(0, 158, 227, 0.3);
+    border-color: rgba(125, 211, 252, 0.75);
+  }
+  50% {
+    box-shadow: 0 14px 40px rgba(0, 158, 227, 0.9), 0 0 35px rgba(56, 189, 248, 0.7), 0 0 0 4px rgba(0, 158, 227, 0.35);
+    border-color: #38bdf8;
+  }
 }
 
 .btn-checkout-mp:hover {
-  background: rgba(0, 158, 227, 0.22);
-  border-color: rgba(0, 158, 227, 0.7);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0, 158, 227, 0.25);
+  transform: translateY(-3px) scale(1.015);
+  background: linear-gradient(135deg, #02abf5 0%, #007cc9 100%);
+  box-shadow: 0 16px 44px rgba(0, 158, 227, 0.95), 0 0 48px rgba(56, 189, 248, 0.8);
+  border-color: #ffffff;
 }
 
-/* 3. PayPal: Azul Oficial */
+.btn-checkout-mp .checkout-btn-title {
+  color: #ffffff;
+  font-weight: 800;
+}
+
+.btn-checkout-mp .checkout-btn-sub {
+  color: #e0f2fe;
+}
+
+.btn-checkout-mp .checkout-btn-icon {
+  background: rgba(255, 255, 255, 0.22);
+  color: #ffffff;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
+}
+
+.btn-checkout-mp .checkout-btn-arrow {
+  color: #ffffff;
+}
+
+/* 3. PayPal: Azul Oficial (#0070BA / #003087) */
 .btn-checkout-paypal {
   background: linear-gradient(135deg, #0070ba 0%, #003087 100%);
-  border-color: rgba(0, 140, 255, 0.6);
-  box-shadow: 0 8px 24px rgba(0, 112, 186, 0.35);
+  border-color: rgba(96, 165, 250, 0.75);
+  box-shadow: 0 8px 28px rgba(0, 112, 186, 0.5), 0 0 18px rgba(0, 112, 186, 0.35);
+  animation: glowPulsePaypal 2.8s infinite ease-in-out;
+}
+
+.btn-checkout-paypal::after {
+  animation-delay: 2.4s;
+}
+
+@keyframes glowPulsePaypal {
+  0%, 100% {
+    box-shadow: 0 8px 26px rgba(0, 112, 186, 0.45), 0 0 16px rgba(0, 112, 186, 0.3);
+    border-color: rgba(96, 165, 250, 0.75);
+  }
+  50% {
+    box-shadow: 0 14px 40px rgba(0, 112, 186, 0.9), 0 0 35px rgba(56, 189, 248, 0.7), 0 0 0 4px rgba(0, 112, 186, 0.35);
+    border-color: #60a5fa;
+  }
 }
 
 .btn-checkout-paypal:hover {
-  transform: translateY(-2px);
+  transform: translateY(-3px) scale(1.015);
   background: linear-gradient(135deg, #007ecf 0%, #003fa8 100%);
-  border-color: rgba(80, 180, 255, 0.85);
-  box-shadow: 0 12px 32px rgba(0, 112, 186, 0.55);
+  box-shadow: 0 16px 44px rgba(0, 112, 186, 0.95), 0 0 48px rgba(56, 189, 248, 0.8);
+  border-color: #ffffff;
+}
+
+.btn-checkout-paypal .checkout-btn-title {
+  color: #ffffff;
+  font-weight: 800;
+}
+
+.btn-checkout-paypal .checkout-btn-sub {
+  color: #dbeafe;
+}
+
+.btn-checkout-paypal .checkout-btn-icon {
+  background: rgba(255, 255, 255, 0.22);
+  color: #ffffff;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
+}
+
+.btn-checkout-paypal .checkout-btn-arrow {
+  color: #ffffff;
+}
+
+/* Badges de Promoción ($297 MXN) y Meses */
+.checkout-btn-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 4px;
+}
+
+.checkout-badge-promo {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-head);
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  padding: 2.5px 9px;
+  border-radius: 999px;
+  white-space: nowrap;
+  animation: promoPulse 2.2s infinite ease-in-out;
+}
+
+@keyframes promoPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.04); }
+}
+
+.badge-gumroad {
+  background: #000000;
+  color: #fef08a;
+  border: 1px solid rgba(254, 240, 138, 0.5);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+}
+
+.badge-mp {
+  background: rgba(0, 24, 60, 0.55);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.badge-paypal {
+  background: #ffc439;
+  color: #002244;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.checkout-badge-meses {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #fef08a;
+  color: #0f172a;
+  font-family: var(--font-head);
+  font-size: 0.74rem;
+  font-weight: 900;
+  letter-spacing: 0.03em;
+  padding: 2.5px 9px;
+  border-radius: 999px;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  animation: mesesPulse 1.8s infinite ease-in-out;
+}
+
+@keyframes mesesPulse {
+  0%, 100% { transform: scale(1); filter: drop-shadow(0 0 3px rgba(254, 240, 138, 0.4)); }
+  50% { transform: scale(1.05); filter: drop-shadow(0 0 10px rgba(254, 240, 138, 0.85)); }
+}
+
+.checkout-badge-meses i {
+  color: #0284c7;
+  font-size: 0.78rem;
 }
 
 .checkout-btn-icon {
@@ -2072,67 +2684,255 @@ button {
   left: 0;
   right: 0;
   z-index: 999;
-  background: rgba(14, 16, 24, 0.95);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-top: 1px solid rgba(0, 122, 255, 0.3);
-  padding: 12px 16px;
-  box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.6);
-  transform: translateY(110%);
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: linear-gradient(180deg, rgba(16, 20, 32, 0.98) 0%, rgba(9, 11, 18, 0.99) 100%);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  padding: 10px 14px;
+  padding-bottom: max(10px, env(safe-area-inset-bottom));
+  box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.85), 0 -2px 14px rgba(0, 122, 255, 0.35);
+  transform: translateY(115%);
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  overflow: hidden;
 }
 
 .mobile-sticky-cta.visible {
   transform: translateY(0);
 }
 
+/* Glowing Neon Top Border */
+.sticky-glow-border {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #ff007a, #007aff, #00f2fe, #f59e0b, #ff007a);
+  background-size: 300% 100%;
+  animation: stickyBorderGlow 3.2s linear infinite;
+  box-shadow: 0 0 12px rgba(0, 122, 255, 0.8), 0 0 20px rgba(0, 242, 254, 0.5);
+}
+
+@keyframes stickyBorderGlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
 .sticky-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
-  max-width: 500px;
+  gap: 10px;
+  max-width: 520px;
   margin: 0 auto;
+  position: relative;
 }
 
 .sticky-text {
   display: flex;
   flex-direction: column;
+  gap: 2px;
+  flex-grow: 1;
+  min-width: 0;
 }
 
-.sticky-title {
-  font-family: var(--font-head);
-  font-size: 0.8rem;
-  font-weight: 700;
-  color: #ffffff;
-  line-height: 1.2;
-}
-
-.sticky-price {
-  font-size: 0.75rem;
-  color: var(--accent-cyan);
-}
-
-.btn-sticky-action {
-  background: linear-gradient(135deg, #007aff 0%, #0056b3 100%);
-  color: #ffffff;
-  font-family: var(--font-head);
-  font-size: 0.84rem;
-  font-weight: 800;
-  padding: 8px 16px;
-  border-radius: var(--radius-sm);
-  display: inline-flex;
+.sticky-badge-row {
+  display: flex;
   align-items: center;
   gap: 6px;
-  box-shadow: 0 4px 14px rgba(0, 122, 255, 0.4);
+}
+
+.sticky-flash-chip {
+  background: #dc2626;
+  color: #ffffff;
+  font-family: var(--font-head);
+  font-size: 0.62rem;
+  font-weight: 900;
+  padding: 1.5px 5px;
+  border-radius: 4px;
+  letter-spacing: 0.04em;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  animation: stickyChipPulse 1.8s infinite ease-in-out;
+}
+
+@keyframes stickyChipPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); filter: drop-shadow(0 0 6px #ef4444); }
+}
+
+.sticky-flash-chip i {
+  color: #fef08a;
+  font-size: 0.60rem;
+}
+
+.sticky-urgent-text {
+  font-family: var(--font-head);
+  font-size: 0.66rem;
+  font-weight: 800;
+  color: #38bdf8;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.sticky-price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+
+.sticky-price-val {
+  font-family: var(--font-head);
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: #fef08a;
+  line-height: 1.1;
+  text-shadow: 0 0 12px rgba(254, 240, 138, 0.4);
+}
+
+.sticky-price-val small {
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #fef08a;
+  margin-left: 1px;
+}
+
+.sticky-usd-val {
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: #e2e8f0;
+}
+
+.sticky-strike-val {
+  font-size: 0.68rem;
+  color: #94a3b8;
+  text-decoration: line-through;
+}
+
+/* Ultra-Llamativo Sticky Action Button */
+.btn-sticky-action {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #0284c7 0%, #0066ff 45%, #4f46e5 100%);
+  background-size: 200% 200%;
+  color: #ffffff;
+  padding: 8px 14px;
+  border-radius: 10px;
+  border: 1.5px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 4px 18px rgba(0, 102, 255, 0.65), 0 0 14px rgba(56, 189, 248, 0.4);
+  animation: stickyBtnBreath 2.2s infinite ease-in-out, ctaGradientFlow 6s ease infinite;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.btn-sticky-action::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transform: skewX(-20deg);
+  animation: stickyShimmer 3.2s infinite ease-in-out;
+  pointer-events: none;
+}
+
+@keyframes stickyShimmer {
+  0% { left: -150%; }
+  35% { left: 150%; }
+  100% { left: 150%; }
+}
+
+@keyframes stickyBtnBreath {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 4px 16px rgba(0, 102, 255, 0.6), 0 0 10px rgba(56, 189, 248, 0.35);
+  }
+  50% {
+    transform: scale(1.035);
+    box-shadow: 0 6px 24px rgba(0, 102, 255, 0.85), 0 0 20px rgba(56, 189, 248, 0.6), 0 0 0 3px rgba(0, 102, 255, 0.25);
+    border-color: #ffffff;
+  }
+}
+
+.btn-sticky-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+}
+
+.btn-sticky-main {
+  font-family: var(--font-head);
+  font-size: 0.88rem;
+  font-weight: 900;
+  letter-spacing: 0.03em;
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  line-height: 1.15;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+  white-space: nowrap;
+}
+
+.btn-sticky-main i.fa-bolt {
+  color: #fef08a;
+  filter: drop-shadow(0 0 5px #fef08a);
+  animation: boltPulse 1.6s infinite ease-in-out;
+}
+
+.btn-sticky-main i.fa-arrow-right {
+  font-size: 0.80rem;
+  transition: transform var(--transition-fast);
+}
+
+.btn-sticky-action:hover .btn-sticky-main i.fa-arrow-right {
+  transform: translateX(3px);
+}
+
+.btn-sticky-sub {
+  font-family: var(--font-body);
+  font-size: 0.62rem;
+  font-weight: 700;
+  color: #e0f2fe;
+  letter-spacing: 0.02em;
+  line-height: 1;
   white-space: nowrap;
 }
 
 .sticky-close-btn {
-  font-size: 1.4rem;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 50%;
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #94a3b8;
+  font-size: 1.1rem;
   line-height: 1;
-  color: var(--text-muted);
-  padding: 4px;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 2px;
+  flex-shrink: 0;
+  transition: all var(--transition-fast);
+}
+
+.sticky-close-btn:hover {
+  background: rgba(239, 68, 68, 0.25);
+  color: #ffffff;
+  border-color: rgba(239, 68, 68, 0.5);
 }
 
 /* Footer */
@@ -2415,19 +3215,22 @@ button {
   }
 
   .hero-cta-box {
-    padding: 14px 16px;
-    border-radius: 12px;
-    gap: 12px;
+    padding: 16px 16px;
+    border-radius: 14px;
+    gap: 14px;
     margin-bottom: 10px;
+    background: rgba(17, 19, 28, 0.88);
+    border: 1px solid rgba(0, 122, 255, 0.35);
   }
 
   .hero-price-line {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: space-between;
     gap: 10px;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
+    width: 100%;
   }
 
   .price-main {
@@ -2461,25 +3264,62 @@ button {
     margin-left: 4px;
   }
 
+  .price-usd-sub {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--accent-cyan);
+    margin-left: 3px;
+  }
+
   .price-meta {
     display: flex;
     align-items: center;
     flex-shrink: 0;
   }
 
-  .price-badge-lifetime {
-    font-size: 0.62rem;
-    padding: 3px 8px;
+  .price-badge-lifetime,
+  .price-badge-urgent {
+    font-size: 0.68rem;
+    padding: 4px 10px;
+    border-radius: 999px;
     white-space: nowrap;
+    max-width: 100%;
   }
 
   .btn-primary-glow.btn-hero-cta {
-    padding: 13px 18px;
-    font-size: 0.95rem;
-    font-weight: 800;
-    border-radius: 10px;
+    padding: 13px 14px;
+    border-radius: 12px;
     width: 100%;
     justify-content: center;
+  }
+
+  .btn-hero-main-title {
+    font-size: 0.94rem;
+    gap: 7px;
+    text-align: center;
+    line-height: 1.25;
+  }
+
+  .btn-hero-subtitle {
+    font-size: 0.70rem;
+    text-align: center;
+  }
+
+  .btn-hero-paypal {
+    padding: 11px 14px;
+    border-radius: 12px;
+    width: 100%;
+  }
+
+  .btn-paypal-main-title {
+    font-size: 0.94rem;
+    gap: 7px;
+    text-align: center;
+  }
+
+  .btn-paypal-subtitle {
+    font-size: 0.68rem;
+    text-align: center;
   }
 
   .hero-microcopy {
@@ -2575,6 +3415,17 @@ button {
 
   .checkout-btn-sub {
     font-size: 0.74rem;
+  }
+
+  .checkout-btn-header {
+    gap: 6px;
+    margin-bottom: 3px;
+  }
+
+  .checkout-badge-promo,
+  .checkout-badge-meses {
+    font-size: 0.66rem;
+    padding: 2px 7px;
   }
 
   /* Matrix Comparison Table (100% visible on mobile without scroll) */
@@ -2709,6 +3560,18 @@ button {
     font-size: 0.58rem;
     padding: 2.5px 7px;
   }
+
+  .btn-hero-paypal {
+    padding: 11px 12px;
+  }
+
+  .btn-paypal-main-title {
+    font-size: 0.94rem;
+  }
+
+  .btn-paypal-subtitle {
+    font-size: 0.68rem;
+  }
 }
 
 /* Small Mobile Screen (max-width: 390px) */
@@ -2779,38 +3642,73 @@ button {
   }
 
   .hero-cta-box {
-    padding: 12px 14px;
-    gap: 10px;
+    padding: 14px 12px;
+    gap: 12px;
     margin-bottom: 8px;
   }
 
   .hero-price-line {
-    gap: 7px;
+    justify-content: space-between;
+    gap: 6px;
+    flex-wrap: wrap;
   }
 
   .price-currency {
-    font-size: 1.35rem;
+    font-size: 1.30rem;
     margin-right: 1px;
   }
 
   .price-value {
-    font-size: 2.15rem;
+    font-size: 2.10rem;
   }
 
   .price-usd {
-    font-size: 0.82rem;
-    margin-left: 3px;
+    font-size: 0.80rem;
+    margin-left: 2px;
   }
 
-  .price-badge-lifetime {
-    font-size: 0.56rem;
-    padding: 2.5px 6px;
-    letter-spacing: 0.03em;
+  .price-usd-sub {
+    font-size: 0.76rem;
+  }
+
+  .price-badge-lifetime,
+  .price-badge-urgent {
+    font-size: 0.60rem;
+    padding: 3px 8px;
+    letter-spacing: 0.02em;
+    border-radius: 999px;
   }
 
   .btn-primary-glow.btn-hero-cta {
-    padding: 12px 14px;
-    font-size: 0.90rem;
+    padding: 12px 10px;
+    border-radius: 10px;
+  }
+
+  .btn-hero-main-title {
+    font-size: 0.88rem;
+    gap: 6px;
+  }
+
+  .btn-hero-subtitle {
+    font-size: 0.66rem;
+  }
+
+  .btn-hero-paypal {
+    padding: 10px 10px;
+    border-radius: 10px;
+  }
+
+  .btn-paypal-main-title {
+    font-size: 0.84rem;
+    gap: 6px;
+  }
+
+  .btn-paypal-main-title i {
+    font-size: 1.05rem;
+  }
+
+  .btn-paypal-subtitle {
+    font-size: 0.62rem;
   }
 
   .hero-microcopy {
@@ -2873,5 +3771,64 @@ button {
   .td-traditional i, .td-alen i {
     font-size: 0.64rem;
     margin-right: 2px;
+  }
+
+  .btn-checkout {
+    padding: 12px 10px;
+  }
+
+  .checkout-btn-icon {
+    width: 32px;
+    height: 32px;
+    font-size: 1.05rem;
+    margin-right: 8px;
+  }
+
+  .checkout-btn-title {
+    font-size: 0.88rem;
+    line-height: 1.2;
+  }
+
+  .checkout-btn-sub {
+    font-size: 0.68rem;
+    line-height: 1.25;
+  }
+
+  .checkout-badge-promo,
+  .checkout-badge-meses {
+    font-size: 0.60rem;
+    padding: 1.5px 6px;
+  }
+
+  .mobile-sticky-cta {
+    padding: 8px 8px;
+  }
+
+  .sticky-inner {
+    gap: 6px;
+  }
+
+  .sticky-price-val {
+    font-size: 1.14rem;
+  }
+
+  .sticky-usd-val {
+    font-size: 0.70rem;
+  }
+
+  .sticky-strike-val {
+    display: none;
+  }
+
+  .btn-sticky-action {
+    padding: 7px 10px;
+  }
+
+  .btn-sticky-main {
+    font-size: 0.82rem;
+  }
+
+  .btn-sticky-sub {
+    font-size: 0.58rem;
   }
 }

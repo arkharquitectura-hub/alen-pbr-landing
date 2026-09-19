@@ -1,6 +1,46 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     // =========================================================
+    // 0. TOP URGENCY BANNER COUNTDOWN TIMER
+    // =========================================================
+    const bannerTimer = document.getElementById('bannerTimer');
+    if (bannerTimer) {
+        const STORAGE_KEY = 'alen_pbr_timer_expiry';
+        const DURATION_MS = (4 * 3600 + 29 * 60 + 18) * 1000; // 4h 29m 18s window
+        let expiry = localStorage.getItem(STORAGE_KEY);
+        const now = Date.now();
+
+        if (!expiry || now > parseInt(expiry, 10)) {
+            expiry = now + DURATION_MS;
+            localStorage.setItem(STORAGE_KEY, expiry.toString());
+        } else {
+            expiry = parseInt(expiry, 10);
+        }
+
+        const updateBannerCountdown = () => {
+            const currentTime = Date.now();
+            let remaining = Math.max(0, expiry - currentTime);
+
+            if (remaining <= 0) {
+                // Recycle fresh timer smoothly so it never stays 00:00:00
+                expiry = Date.now() + DURATION_MS;
+                localStorage.setItem(STORAGE_KEY, expiry.toString());
+                remaining = DURATION_MS;
+            }
+
+            const totalSecs = Math.floor(remaining / 1000);
+            const hours = String(Math.floor(totalSecs / 3600)).padStart(2, '0');
+            const mins = String(Math.floor((totalSecs % 3600) / 60)).padStart(2, '0');
+            const secs = String(totalSecs % 60).padStart(2, '0');
+
+            bannerTimer.textContent = `${hours}:${mins}:${secs}`;
+        };
+
+        updateBannerCountdown();
+        setInterval(updateBannerCountdown, 1000);
+    }
+
+    // =========================================================
     // 1. SMOOTH SCROLL WITH DYNAMIC NAVBAR OFFSET
     // =========================================================
     function scrollToTarget(target, href) {
@@ -257,21 +297,21 @@ document.addEventListener('DOMContentLoaded', () => {
                     content_name: 'Alen PBR Organizer Full Suite - Gumroad',
                     content_category: 'Software & 3D Assets',
                     currency: 'USD',
-                    value: 27.00
+                    value: 17.00
                 });
             } else if (provider === 'mercadopago') {
                 sendMetaPixelEvent('InitiateCheckout', {
                     content_name: 'Alen PBR Organizer Full Suite - Mercado Pago',
                     content_category: 'Software & 3D Assets',
                     currency: 'MXN',
-                    value: 497.00
+                    value: 297.00
                 });
             } else if (provider === 'paypal') {
                 sendMetaPixelEvent('InitiateCheckout', {
                     content_name: 'Alen PBR Organizer Full Suite - PayPal',
                     content_category: 'Software & 3D Assets',
                     currency: 'USD',
-                    value: 27.00
+                    value: 17.00
                 });
             }
         });
@@ -298,8 +338,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     sendMetaPixelEvent('ViewContent', {
                         content_name: 'Alen PBR Organizer Pricing Section',
                         content_category: 'Pricing Section',
-                        currency: 'USD',
-                        value: 27.00
+                        currency: 'MXN',
+                        value: 297.00
                     });
                 }
             });

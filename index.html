@@ -42,8 +42,46 @@
 </head>
 <body>
 
-    <!-- ===== NAVBAR ===== -->
+    <!-- ===== HEADER (Urgency Banner + Navbar) ===== -->
     <header class="site-header">
+        <!-- Top Urgency Flash Banner -->
+        <div class="top-urgency-banner" id="topUrgencyBanner">
+            <div class="banner-shimmer"></div>
+            <div class="top-urgency-inner">
+                <div class="banner-badge">
+                    <i class="fa-solid fa-bolt"></i> OFERTA FLASH
+                </div>
+                
+                <div class="banner-text-desktop">
+                    <span class="banner-price-lead">Por tiempo limitado:</span>
+                    <span>Alen PBR Organizer + Mega Pack 3D a solo</span>
+                    <span class="banner-price-tag">
+                        <strong class="banner-mxn-highlight">$297 MXN</strong>
+                        <span class="banner-usd-highlight">(17 Dólares)</span>
+                    </span>
+                    <span class="banner-strikethrough">Antes $149 USD</span>
+                    <span class="banner-discount-chip">89% OFF</span>
+                </div>
+
+                <div class="banner-text-mobile">
+                    <span>⚡ <strong>¡OFERTA FLASH!</strong> Solo <strong class="banner-mxn-highlight">$297 MXN</strong> <span class="banner-usd-highlight">(17 USD)</span></span>
+                </div>
+
+                <div class="banner-action-group">
+                    <div class="banner-timer-wrap" title="Tiempo restante de esta oferta especial">
+                        <i class="fa-regular fa-clock" style="color:#fef08a;"></i>
+                        <span>Termina en:</span>
+                        <span class="timer-digits" id="bannerTimer">04:29:18</span>
+                    </div>
+
+                    <a href="#checkout" class="banner-cta-button">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span>¡Comprar por $297 MXN!</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
         <nav class="navbar" id="navbar">
             <div class="nav-container container">
                 <a href="#" class="nav-brand" aria-label="Alen PBR Inicio">
@@ -61,8 +99,8 @@
 
                 <div class="nav-actions">
                     <a href="catalogo.html" class="nav-link-catalog" title="Explorar catálogo online"><i class="fa-solid fa-layer-group"></i> Catálogo</a>
-                    <a href="https://paypal.me/Donaciones428/27USD" target="_blank" rel="noopener noreferrer" class="btn-nav-paypal" data-track-checkout="paypal" title="Pagar con PayPal">
-                        <i class="fa-brands fa-paypal"></i> PayPal
+                    <a href="https://paypal.me/Donaciones428/17USD" target="_blank" rel="noopener noreferrer" class="btn-nav-paypal" data-track-checkout="paypal" title="Pagar $17 USD (~$297 MXN) con PayPal">
+                        <i class="fa-brands fa-paypal"></i> PayPal ($17 USD)
                     </a>
                     <a href="#checkout" class="btn-nav-cta">
                         <span class="cta-text-full">Obtener Alen PBR</span>
@@ -156,17 +194,34 @@
                     <div class="hero-cta-box">
                         <div class="hero-price-line">
                             <div class="price-main">
-                                <span class="price-currency">$</span><span class="price-value">27</span>
-                                <span class="price-usd">USD</span>
+                                <span class="price-currency">$</span><span class="price-value">297</span>
+                                <span class="price-usd">MXN <span class="price-usd-sub">(17 USD)</span></span>
                             </div>
                             <div class="price-meta">
-                                <span class="price-badge-lifetime">PAGO ÚNICO · SIN SUSCRIPCIONES</span>
+                                <span class="price-badge-urgent"><i class="fa-solid fa-bolt"></i> 89% OFF · PAGO ÚNICO</span>
                             </div>
                         </div>
 
-                        <a href="#checkout" class="btn-primary-glow btn-hero-cta">
-                            <span class="btn-text">OBTENER ALEN PBR</span>
-                            <span class="btn-icon"><i class="fa-solid fa-arrow-right"></i></span>
+                        <a href="#checkout" class="btn-primary-glow btn-hero-cta" id="heroCtaBtn">
+                            <div class="btn-hero-inner">
+                                <span class="btn-hero-main-title">
+                                    <i class="fa-solid fa-bolt btn-bolt-icon"></i>
+                                    <span>OBTENER ALEN PBR ($297 MXN)</span>
+                                    <i class="fa-solid fa-arrow-right btn-arrow-icon"></i>
+                                </span>
+                                <span class="btn-hero-subtitle">Licencia vitalicia &bull; Acceso instantáneo</span>
+                            </div>
+                        </a>
+
+                        <!-- Direct PayPal Button (Instant Checkout $17 USD / $297 MXN) -->
+                        <a href="https://paypal.me/Donaciones428/17USD" target="_blank" rel="noopener noreferrer" class="btn-hero-paypal" data-track-checkout="paypal" title="Pagar $17 USD (~$297 MXN) con PayPal">
+                            <div class="btn-paypal-inner">
+                                <span class="btn-paypal-main-title">
+                                    <i class="fa-brands fa-paypal"></i>
+                                    <span>Pagar con PayPal ($17 USD)</span>
+                                </span>
+                                <span class="btn-paypal-subtitle">Cobro directo de ~$297 MXN &bull; Saldo o tarjeta</span>
+                            </div>
                         </a>
 
                         <div class="hero-microcopy">
@@ -364,7 +419,7 @@
                             <li>
                                 <i class="fa-solid fa-circle-check"></i>
                                 <div>
-                                    <strong>Un solo pago de $27 USD para toda la vida:</strong>
+                                    <strong>Un solo pago de $297 MXN ($17 USD) para toda la vida:</strong>
                                     <span>Sin mensualidades, sin renovaciones obligatorias, archivos 100% locales en tu equipo.</span>
                                 </div>
                             </li>
@@ -519,7 +574,7 @@
                 <div class="megapack-footer-cta text-center">
                     <p class="megapack-note"><i class="fa-solid fa-cloud-arrow-down"></i> Todos los recursos quedan en tu propiedad para siempre alojados en Google Drive de alta velocidad.</p>
                     <a href="#checkout" class="btn-primary-glow btn-compact">
-                        <span>Obtener Todo el Pack por $27 USD</span>
+                        <span>Obtener Todo el Pack por solo $297 MXN ($17 USD)</span>
                         <i class="fa-solid fa-arrow-right"></i>
                     </a>
                 </div>
@@ -639,7 +694,7 @@
                     <div class="trust-card">
                         <div class="trust-icon"><i class="fa-solid fa-infinity"></i></div>
                         <h3 class="trust-title">Licencia Vitalicia (Pago Único)</h3>
-                        <p class="trust-desc">Pagas una sola vez $27 USD y el software y los recursos son tuyos para siempre. Sin cobros mensuales recurrentes.</p>
+                        <p class="trust-desc">Pagas una sola vez $297 MXN ($17 USD) y el software y los recursos son tuyos para siempre. Sin cobros mensuales recurrentes.</p>
                     </div>
 
                     <div class="trust-card">
@@ -705,7 +760,7 @@
                             <tr>
                                 <td class="td-feature"><strong>Modelo de cobro</strong></td>
                                 <td class="td-traditional"><i class="fa-solid fa-xmark"></i> Suscripciones mensuales de $15 a $35 USD/mes</td>
-                                <td class="td-alen"><i class="fa-solid fa-check"></i> <strong>Pago único de $27 USD (Acceso de por vida)</strong></td>
+                                <td class="td-alen"><i class="fa-solid fa-check"></i> <strong>Pago único de $297 MXN / $17 USD (Acceso de por vida)</strong></td>
                             </tr>
                             <tr>
                                 <td class="td-feature"><strong>Almacenamiento y privacidad</strong></td>
@@ -746,15 +801,16 @@
 
                         <div class="pricing-price-display">
                             <div class="price-strikethrough">
-                                <span>Precio Regular: $149 USD</span>
-                                <span class="discount-badge">82% AHORRO</span>
+                                <span>Precio Regular: $149 USD (~$2,800 MXN)</span>
+                                <span class="discount-badge">🔥 89% AHORRO POR TIEMPO LIMITADO</span>
                             </div>
                             <div class="price-hero">
                                 <span class="currency-symbol">$</span>
-                                <span class="amount-number">27</span>
-                                <span class="currency-code">USD</span>
+                                <span class="amount-number">297</span>
+                                <span class="currency-code">MXN</span>
+                                <span class="price-usd-hero">(17 USD)</span>
                             </div>
-                            <p class="price-footnote">Pago único &bull; Sin renovaciones ni suscripciones mensuales &bull; (~$497 MXN)</p>
+                            <p class="price-footnote">⚡ Oferta especial por tiempo limitado &bull; Pago único &bull; Sin suscripciones mensuales</p>
                         </div>
 
                         <!-- Included Checklist -->
@@ -808,8 +864,11 @@
                                data-track-checkout="gumroad">
                                 <div class="checkout-btn-icon"><i class="fa-solid fa-credit-card"></i></div>
                                 <div class="checkout-btn-content">
-                                    <span class="checkout-btn-title">Comprar con Tarjeta Internacional (Gumroad)</span>
-                                    <span class="checkout-btn-sub">Visa, Mastercard, AMEX &bull; $27 USD &bull; Acceso instantáneo</span>
+                                    <div class="checkout-btn-header">
+                                        <span class="checkout-btn-title">Comprar con Tarjeta Internacional (Gumroad)</span>
+                                        <span class="checkout-badge-promo badge-gumroad"><i class="fa-solid fa-bolt"></i> OFERTA $297 MXN (17 USD)</span>
+                                    </div>
+                                    <span class="checkout-btn-sub">Visa, Mastercard, AMEX &bull; Licencia vitalicia &bull; Acceso instantáneo</span>
                                 </div>
                                 <div class="checkout-btn-arrow"><i class="fa-solid fa-arrow-right"></i></div>
                             </a>
@@ -822,22 +881,29 @@
                                data-track-checkout="mercadopago">
                                 <div class="checkout-btn-icon"><i class="fa-solid fa-building-columns"></i></div>
                                 <div class="checkout-btn-content">
-                                    <span class="checkout-btn-title">Pagar en México (Mercado Pago / SPEI / OXXO)</span>
-                                    <span class="checkout-btn-sub">Transferencia SPEI, Débito o Efectivo &bull; $497 MXN</span>
+                                    <div class="checkout-btn-header">
+                                        <span class="checkout-btn-title">Pagar en México (Mercado Pago)</span>
+                                        <span class="checkout-badge-meses"><i class="fa-solid fa-credit-card"></i> ¡HASTA 6 MESES!</span>
+                                        <span class="checkout-badge-promo badge-mp"><i class="fa-solid fa-tag"></i> $297 MXN</span>
+                                    </div>
+                                    <span class="checkout-btn-sub"><strong>¡Hasta 6 meses disponibles!</strong> &bull; SPEI, Débito o Efectivo en OXXO</span>
                                 </div>
                                 <div class="checkout-btn-arrow"><i class="fa-solid fa-arrow-right"></i></div>
                             </a>
 
                             <!-- 3. PayPal Option -->
-                            <a href="https://paypal.me/Donaciones428/27USD" 
+                            <a href="https://paypal.me/Donaciones428/17USD" 
                                target="_blank" 
                                rel="noopener noreferrer" 
                                class="btn-checkout btn-checkout-paypal" 
                                data-track-checkout="paypal">
                                 <div class="checkout-btn-icon"><i class="fa-brands fa-paypal"></i></div>
                                 <div class="checkout-btn-content">
-                                    <span class="checkout-btn-title">Pagar con PayPal ($27 USD)</span>
-                                    <span class="checkout-btn-sub">Saldo PayPal o tarjetas asociadas &bull; Confirmación inmediata</span>
+                                    <div class="checkout-btn-header">
+                                        <span class="checkout-btn-title">Pagar con PayPal</span>
+                                        <span class="checkout-badge-promo badge-paypal"><i class="fa-solid fa-bolt"></i> OFERTA $297 MXN (17 USD)</span>
+                                    </div>
+                                    <span class="checkout-btn-sub">Monto automático de $17 USD (~$297 MXN) &bull; Saldo PayPal o Tarjetas</span>
                                 </div>
                                 <div class="checkout-btn-arrow"><i class="fa-solid fa-arrow-right"></i></div>
                             </a>
@@ -926,7 +992,7 @@
                             <i class="fa-solid fa-chevron-down faq-chevron"></i>
                         </button>
                         <div class="faq-answer">
-                            <p><strong>No.</strong> Es un único pago de $27 USD por una licencia vitalicia. No existen cobros mensuales, renovaciones forzosas ni costos ocultos. Compras una vez y lo usas para siempre.</p>
+                            <p><strong>No.</strong> Es un único pago de solo $297 MXN (17 USD) por una licencia vitalicia en esta oferta por tiempo limitado. No existen cobros mensuales, renovaciones forzosas ni costos ocultos. Compras una vez y lo usas para siempre.</p>
                         </div>
                     </div>
 
@@ -979,16 +1045,29 @@
 
     </main>
 
-    <!-- ===== STICKY MOBILE CTA BAR ===== -->
+    <!-- ===== STICKY MOBILE CTA BAR (Ultra-Llamativo CRO Banner) ===== -->
     <div class="mobile-sticky-cta" id="stickyCTA">
+        <div class="sticky-glow-border"></div>
         <div class="sticky-inner">
             <div class="sticky-text">
-                <span class="sticky-title">Alen PBR Organizer + Mega Pack</span>
-                <span class="sticky-price"><strong>$27 USD</strong> &bull; Pago Único</span>
+                <div class="sticky-badge-row">
+                    <span class="sticky-flash-chip"><i class="fa-solid fa-bolt"></i> 89% OFF</span>
+                    <span class="sticky-urgent-text">¡OFERTA FLASH!</span>
+                </div>
+                <div class="sticky-price-row">
+                    <span class="sticky-price-val">$297 <small>MXN</small></span>
+                    <span class="sticky-usd-val">(17 USD)</span>
+                    <span class="sticky-strike-val">$149 USD</span>
+                </div>
             </div>
-            <a href="#checkout" class="btn-sticky-action">
-                <span>Obtener Ahora</span>
-                <i class="fa-solid fa-arrow-right"></i>
+            <a href="#checkout" class="btn-sticky-action" id="btnStickyBuy">
+                <div class="btn-sticky-inner">
+                    <span class="btn-sticky-main">
+                        <i class="fa-solid fa-bolt"></i> ¡COMPRAR!
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </span>
+                    <span class="btn-sticky-sub">Licencia Vitalicia</span>
+                </div>
             </a>
             <button class="sticky-close-btn" id="stickyClose" aria-label="Cerrar barra sticky">&times;</button>
         </div>
